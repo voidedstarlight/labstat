@@ -33,11 +33,11 @@ function parseProcFile(): memory_data {
 		data[key] = parseInt(value) * 1024;
 	});
 
-	const free = data.MemFree ?? 0;
-	const total = data.MemTotal ?? 0;
-	const buffers = data.Buffers ?? 0;
-	const adjusted_cached = (data.Cached ?? 0) - (data.Shmem ?? 0);
-	const cache = adjusted_cached + (data.SReclaimable ?? 0);
+	const free = data.MemFree;
+	const total = data.MemTotal;
+	const buffers = data.Buffers;
+	const adjusted_cached = data.Cached - data.Shmem;
+	const cache = adjusted_cached + data.SReclaimable;
 	const active = total - free - buffers - cache;
 
 	return { active, buffers, cache, free, total };
