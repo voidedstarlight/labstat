@@ -1,5 +1,6 @@
 import getHash from "../../util/hash";
 import initCpufreq from "./initializers/cpufreq/main";
+import initCpuhist from "./initializers/cpuhist";
 import initLoadavg from "./initializers/loadavg/main";
 import initMemory from "./initializers/memory";
 import initOS from "./initializers/os";
@@ -15,8 +16,14 @@ interface Collectors {
 let socket: WebSocket;
 const collectors: string[] = [];
 
+// prefixes: ! indicates no automatic updates after init
+//           * indicates no backend collector; never queries WS for data
+// tl;dr we use completely random symbols to indicate separate collector types
+// [todo] dynamically find list of collectors (OOP?)
+
 const INIT_COLLECTORS = [
-	"!os", "loadavg", "cpufreq", "memory", "!disks", "!net", "!graphics"
+	"!os", "loadavg", "cpufreq", "*cpuhist", "memory", "!disks", "!net",
+	"!graphics"
 ];
 
 function createContainer(id: string, parent: HTMLElement) {
@@ -61,6 +68,7 @@ async function initializeSocket(node: string) {
 
 function refreshData(ids?: string[]) {
 	(ids ?? collectors).forEach(id => {
+		if (id.startsWith("*")) return;
 		socket.send(id);
 	});
 }
@@ -74,24 +82,21 @@ async function nodeView(content: HTMLElement) {
 	await initializeSocket(node);
 	refreshData(all_collectors);
 
-	INIT_COLLECTORS.forEach(init_collector => {
-		all_collectors.some(collector => {
-			if (init_collector === collector) {
-				createContainer(collector, content);
-				return true;
-			}
-		});
+	INIT_COLLECTORS.forEach(collector => {
+		if (collector.startsWith("*") || all_collectors.includes(collector)) {
+			createContainer(collector, content);
+		}
 	});
 
 	initOS();
 	initLoadavg();
 	initCpufreq();
+	initCpuhist();
 	initMemory();
 
 	all_collectors.forEach(id => {
-		if (!id.startsWith("!")) {
-			collectors.push(id);
-		}
+		if (id.startsWith("!") || id.startsWith("*")) return;
+		collectors.push(id);
 	});
 
 	const interval = setInterval(refreshData, 1000);

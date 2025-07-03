@@ -22,9 +22,7 @@ interface PieUpdateOptions {
 function pieChart(options: PieInitOptions) {
 	void import("./pie.css");
 
-	const canvas = createCanvas({
-		size: options.size
-	});
+	const canvas = createCanvas(options);
 
 	const ctx = canvas.getContext("2d");
 

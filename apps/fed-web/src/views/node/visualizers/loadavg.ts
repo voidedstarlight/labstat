@@ -1,3 +1,11 @@
+import { addGraphData } from "../components/canvas/charts/graph/main";
+
+function updateHist(data: unknown) {
+	const canvas = document.getElementById("cpuhist-canvas");
+
+	addGraphData(canvas, data);
+}
+
 function loadavg(data: [number, number, number]) {
 	const container = document.getElementById("collector-loadavg");
 	if (!container) return;
@@ -7,6 +15,8 @@ function loadavg(data: [number, number, number]) {
 	const data_15m = document.getElementById("loadavg_15m");
 
 	[data_1m.innerText, data_5m.innerText, data_15m.innerText] = data;
+
+	updateHist(data.at(0));
 }
 
 export default loadavg;
