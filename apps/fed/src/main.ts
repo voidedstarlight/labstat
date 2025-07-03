@@ -4,7 +4,7 @@ import fastifyWebsocket from "@fastify/websocket";
 import WebSocket from "ws";
 import { join } from "path";
 
-import { getNodes, initDataFile, writeNode } from "./nodes";
+import { getNodes, initDataFile, writeNode, type NodeOptions } from "./nodes";
 
 interface Collectors {
 	collectors: string[];
@@ -65,7 +65,7 @@ server.post("/api/register-node", {
 }, (request, reply) => {
 	const { ip } = request;
 
-	writeNode(ip, request.body);
+	writeNode(ip, request.body as NodeOptions);
 	reply.send("");
 });
 

@@ -4,7 +4,7 @@ import drawPoints from "./point";
 import drawStats from "./stats";
 import { drawYAxis } from "./axes";
 
-type value_formatter = (value: number) => string;
+type value_formatter = (value: number, precision?: number) => string;
 
 interface ScatterUpdateOptions {
 	colors?: [string, string];
@@ -15,7 +15,7 @@ interface ScatterUpdateOptions {
 
 interface PointData {
 	index: number;
-	value: number;
+	value: number | string;
 	x: number;
 }
 
@@ -40,6 +40,7 @@ function scatterPlotUpdate(
 	options: ScatterUpdateOptions
 ) {
 	const ctx = canvas.getContext("2d");
+	if (!ctx) return;
 
 	const width = options.values.length * 30 + 150;
 	if (canvas.width !== width) {
@@ -53,17 +54,17 @@ function scatterPlotUpdate(
 	let min = Math.min(...options.values);
 	let max = Math.max(...options.values);
 
-	const old_min = parseFloat(canvas.dataset.min ?? Number.POSITIVE_INFINITY);
-	const old_max = parseFloat(canvas.dataset.max ?? Number.NEGATIVE_INFINITY);
+	const old_min = parseFloat(canvas.dataset.min ?? "Infinity");
+	const old_max = parseFloat(canvas.dataset.max ?? "-Infinity");
 
 	if (min < old_min) {
-		canvas.dataset.min = min;
+		canvas.dataset.min = min.toString();
 	} else {
 		min = old_min;
 	}
 
 	if (max > old_max) {
-		canvas.dataset.max = max;
+		canvas.dataset.max = max.toString();
 	} else {
 		max = old_max;
 	}
@@ -81,7 +82,11 @@ function scatterPlotUpdate(
 		const value = options.values.at(index);
 		points.push({
 			index,
-			value: options.value_formatter ? options.value_formatter(value) : value,
+			value: (
+				options.value_formatter
+					? options.value_formatter(value ?? 0)
+					: value ?? 0
+			),
 			x: column
 		});
 	});

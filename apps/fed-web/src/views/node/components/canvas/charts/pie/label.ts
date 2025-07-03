@@ -53,12 +53,14 @@ function attachListeners(
 
 		const sectors = (() => {
 			try {
-				return JSON.parse(canvas.dataset.sectors) as StyledSector[];
+				return JSON.parse(canvas.dataset.sectors ?? "") as StyledSector[];
 			} catch {
 				console.warn(
 					"[charts/pie] failed to parse JSON sectors data. Chart hover effects "
 					+ "may not work"
 				);
+
+				return false;
 			}
 		})();
 
@@ -85,6 +87,8 @@ function attachListeners(
 
 				return true;
 			}
+
+			return false;
 		}) || hideLabel(); // Hide label if no setor is found
 	});
 }

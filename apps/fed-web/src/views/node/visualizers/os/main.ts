@@ -14,16 +14,16 @@ function os(data: OSInfo) {
 	assignColor(data.os);
 
 	const logo = document.getElementById("title-logo");
-	void getLogo(data.os).then(text => {
+	if (logo) void getLogo(data.os).then(text => {
 		logo.innerText = text;
 	});
 
 	const text = document.getElementById("title-text");
-	text.innerText = data.ascii;
+	if (text) text.innerText = data.ascii;
 
 	if (data.kernel) {
 		const subtitle = document.getElementById("subtitle-kernel");
-		subtitle.innerText = "kernel: " + data.kernel;
+		if (subtitle) subtitle.innerText = "kernel: " + data.kernel;
 	}
 }
 

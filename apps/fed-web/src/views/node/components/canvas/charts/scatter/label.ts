@@ -17,12 +17,14 @@ function styleLabel(pos: Point, text: string) {
 function pointLabel(canvas: HTMLCanvasElement, pos: Point) {
 	const points = (() => {
 		try {
-			return JSON.parse(canvas.dataset.points) as PointData[];
+			return JSON.parse(canvas.dataset.points ?? "") as PointData[];
 		} catch {
 			console.warn(
 				"[charts/scatter] failed to parse JSON points data. Chart hover"
 				+ "effects may not work"
 			);
+
+			return false;
 		}
 	})();
 
@@ -41,6 +43,8 @@ function pointLabel(canvas: HTMLCanvasElement, pos: Point) {
 
 			return true;
 		}
+
+		return false;
 	}) || hideLabel();
 }
 
@@ -58,6 +62,8 @@ function statLabel(canvas: HTMLCanvasElement, pos: Point) {
 			styleLabel(absolute_pos, `${stat.name}: ${stat.value}`);
 			return true;
 		}
+
+		return false;
 	});
 }
 

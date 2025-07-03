@@ -12,6 +12,9 @@ function initMemory() {
 		size: 280,
 		value_formatter: readableBytes
 	});
+
+	if (!canvas) return;
+
 	container.appendChild(canvas);
 	canvas.id = "memory-canvas";
 	canvas.classList.add("memory-canvas");

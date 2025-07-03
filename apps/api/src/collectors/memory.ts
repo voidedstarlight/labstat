@@ -47,10 +47,10 @@ class Memory implements Collector {
 	id = "memory";
 
 	getData() {
-		if (isLinux() && existsSync("/proc/meminfo")) {
-			const proc_data = parseProcFile();
-			return proc_data;
-		}
+		if (!isLinux() || !existsSync("/proc/meminfo")) return {};
+
+		const proc_data = parseProcFile();
+		return proc_data;
 	}
 }
 

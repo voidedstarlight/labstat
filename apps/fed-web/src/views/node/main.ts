@@ -16,10 +16,12 @@ interface Collectors {
 let socket: WebSocket;
 const collectors: string[] = [];
 
-// prefixes: ! indicates no automatic updates after init
-//           * indicates no backend collector; never queries WS for data
-// tl;dr we use completely random symbols to indicate separate collector types
-// [todo] dynamically find list of collectors (OOP?)
+/*
+ * prefixes: ! indicates no automatic updates after init
+ *           * indicates no backend collector; never queries WS for data
+ * tl;dr we use completely random symbols to indicate separate collector types
+ * [todo] dynamically find list of collectors (OOP?)
+ */
 
 const INIT_COLLECTORS = [
 	"!os", "loadavg", "cpufreq", "*cpuhist", "memory", "!disks", "!net",
@@ -50,11 +52,9 @@ async function initializeSocket(node: string) {
 		if (!data) return;
 
 		const separator = data.indexOf(" ");
-
 		const id = data.slice(0, separator);
-		const data = data.slice(separator + 1);
 
-		showData(id, data);
+		showData(id, data.slice(separator + 1));
 	});
 
 	registerDeinit(() => {

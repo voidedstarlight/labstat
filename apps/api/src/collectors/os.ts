@@ -5,12 +5,11 @@ import { stripAllQuotes } from "../util/string";
 import { existsSync, readFileSync } from "fs";
 import { execSync } from "child_process";
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 figlet.parseFont("Slant", slant);
 
-const PROCESS_PLATFORMS: Record<NodeJS.Platform, string> = {
+const PROCESS_PLATFORMS: Partial<Record<NodeJS.Platform, string>> = {
 	aix: "AIX",
-	andriod: "Andriod",
+	android: "Android",
 	darwin: "macOS",
 	freebsd: "FreeBSD",
 	openbsd: "OpenBSD",
@@ -29,10 +28,35 @@ interface FullOSInfo extends OSInfo {
 
 function generateAscii(text: string): Promise<string> {
 	return new Promise(resolve => {
-		figlet(text, { font: "Slant" }, (_, result: string) => {
-			resolve(result);
+		figlet(text, { font: "Slant" }, (_, result?: string) => {
+			resolve(result ?? "");
 		});
 	});
+}
+
+function parseLinuxRelease(
+	lines: string[]
+): [string, string] {
+	const first = lines.at(0);
+
+	if (!first) return ["", ""];
+	const remainder = lines.slice(1);
+
+	if (first.startsWith("NAME=")) {
+		const text = first.slice(5);
+		const os_name = stripAllQuotes(text);
+
+		return [os_name, parseLinuxRelease(remainder)[1]];
+	}
+
+	if (first.startsWith("VERSION_ID=")) {
+		const text = first.slice(11);
+		const os_version = stripAllQuotes(text);
+
+		return [parseLinuxRelease(remainder)[0], os_version];
+	}
+
+	return parseLinuxRelease(remainder);
 }
 
 function identifyOS(): OSInfo {
@@ -48,20 +72,7 @@ function identifyOS(): OSInfo {
 		const release = readFileSync("/etc/os-release").toString();
 		const lines = release.split("\n");
 
-		let os_name: string;
-		let version: string;
-
-		lines.some(line => {
-			if (line.startsWith("NAME=")) {
-				const text = line.slice(5);
-				os_name = stripAllQuotes(text);
-			} else if (line.startsWith("VERSION_ID=")) {
-				const text = line.slice(11);
-				version = stripAllQuotes(text);
-			}
-
-			return os_name && version;
-		});
+		const [os_name, version] = parseLinuxRelease(lines);
 
 		if (os_name) return {
 			os: os_name,
@@ -87,7 +98,7 @@ function isLinux() {
 class OS implements Collector {
 	id = "!os";
 
-	async getData(): FullOSInfo {
+	async getData(): Promise<FullOSInfo> {
 		const data = identifyOS();
 		const ascii = await generateAscii(data.os);
 

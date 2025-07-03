@@ -7,7 +7,8 @@ import {
 	Disks, Graphics, Hostname, Network, Uptime
 } from "./collectors/core";
 
-const all_collectors: Collector[] = [
+// eslint-disable-next-line @typescript-eslint/prefer-function-type
+const all_collectors: { new(): Collector }[] = [
 	CPUFreq, Disks, Graphics, Hostname, LoadAvg, Memory, Network, OS, Uptime
 ];
 

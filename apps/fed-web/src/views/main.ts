@@ -1,6 +1,6 @@
-import { getNodes, type NodeOptions } from "../api";
+import { getNodes } from "../api";
 
-function displayNode(ip: string, data: NodeOptions, list: HTMLElement) {
+function displayNode(ip: string, _: unknown, list: HTMLElement) {
 	const container = document.createElement("div");
 	container.addEventListener("click", () => {
 		document.location.hash = ip;

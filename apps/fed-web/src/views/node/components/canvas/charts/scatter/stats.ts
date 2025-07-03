@@ -12,9 +12,9 @@ function drawStats(
 	values: number[],
 	value_formatter?: value_formatter
 ) {
-	let mean = meanFn(...values);
-	let min = Math.min(...values);
-	let max = Math.max(...values);
+	let mean: number | string = meanFn(...values);
+	let min: number | string = Math.min(...values);
+	let max: number | string = Math.max(...values);
 
 	if (value_formatter) {
 		mean = value_formatter(mean, 1);

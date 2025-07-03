@@ -25,14 +25,16 @@ function cmdExists(cmd: string): boolean {
 					+ "incorrectly flagged as unavailable."
 				);
 			}
+
+			return false;
 		}
 	});
 }
 
-async function cmdExitCode(cmd: string): Promise<boolean> {
+async function cmdExitCode(cmd: string): Promise<number> {
 	return new Promise(resolve => {
 		exec(cmd).on("exit", code => {
-			resolve(code);
+			resolve(code ?? 0);
 		});
 	});
 }

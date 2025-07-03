@@ -7,9 +7,10 @@ import memory from "./visualizers/memory";
 import net from "./visualizers/net";
 import os from "./visualizers/os/main";
 
-type handler = (data: unknown) => void;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type handler_function = (data: any) => void;
 
-const handlers: Record<string, handler | null> = {
+const handlers: Record<string, handler_function | null> = {
 	cpufreq,
 	"!disks": disks,
 	"!graphics": graphics,

@@ -14,7 +14,7 @@ function showLabel(): HTMLParagraphElement {
 		element.classList.add("chart-label");
 
 		return element;
-	})();
+	})() as HTMLParagraphElement;
 
 	label.classList.add("active");
 

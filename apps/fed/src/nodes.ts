@@ -50,3 +50,4 @@ function writeNode(ip: string, options: NodeOptions) {
 }
 
 export { getNodes, initDataFile, writeNode };
+export type { NodeOptions };

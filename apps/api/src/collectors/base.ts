@@ -1,8 +1,8 @@
 interface Collector {
-	id: string;
-	inactive?: true;
 	getData: () => unknown;
-	new(): this;
+	id: string;
+	inactive?: boolean;
+	new?: () => this;
 }
 
 export default Collector;

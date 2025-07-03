@@ -6,12 +6,12 @@ function initCpuhist() {
 	if (!container) return;
 
 	createCollectorTitle(container, "CPU History");
-	
+
 	const canvas = graph({
 		size: 280,
 		datasets: [
 			{
-				type: "line",
+				type: "line"
 			}
 		]
 	});

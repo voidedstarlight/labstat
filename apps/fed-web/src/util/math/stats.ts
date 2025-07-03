@@ -31,8 +31,8 @@ function squaredDeviations(values: number[], mean_value: number): number[] {
 }
 
 function stddev(values: number[], mean_value?: number): number {
-	const deviations = squaredDeviations(values, mean_value ?? mean(values));
-	const variance = mean(deviations);
+	const deviations = squaredDeviations(values, mean_value ?? mean(...values));
+	const variance = mean(...deviations);
 	return Math.sqrt(variance);
 }
 

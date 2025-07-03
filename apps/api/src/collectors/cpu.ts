@@ -24,6 +24,7 @@ function invokeSysctl(name: string): string | undefined {
 
 class LoadAvg implements Collector {
 	id = "loadavg";
+	inactive = false;
 
 	constructor() {
 		if (isWindows()) {
@@ -39,7 +40,7 @@ class LoadAvg implements Collector {
 		 * each value to 2 decimals.
 		 */
 
-		const [avg_1, avg_5, avg_15] = loadavg();
+		const [avg_1, avg_5, avg_15] = loadavg() as [number, number, number];
 
 		return [
 			round(avg_1, 2),
@@ -51,7 +52,8 @@ class LoadAvg implements Collector {
 
 class CPUFreq implements Collector {
 	id = "cpufreq";
-	#n_cpus: number;
+	inactive = false;
+	#n_cpus = 0;
 	#hasSysctl = false;
 	#hasSysDevices = false;
 
@@ -63,31 +65,41 @@ class CPUFreq implements Collector {
 		 * even though a command with the same name exists on Linux.
 		 */
 
-		if (isWindows()) {
-			this.inactive = true;
-			return;
-		}
+		void this.#methodExists().then(exists => {
+			if (!exists) {
+				this.inactive = true;
+				return;
+			}
 
-		if (isLinux() && existsSync("/sys/devices/system/cpu")) {
-			this.#hasSysDevices = true;
-		} else if (cmdExists("sysctl") && cmdExitCode("sysctl dev.cpu") === 0) {
-			this.#hasSysctl = true;
-		} else {
-			this.inactive = true;
-			return;
-		}
-
-		this.#n_cpus = parseInt(execSync("getconf _NPROCESSORS_ONLN").toString());
+			this.#n_cpus = parseInt(execSync("getconf _NPROCESSORS_ONLN").toString());
+		});
 	}
 
 	getData(index = 0): number[] {
 		if (index > this.#n_cpus - 1) return [];
 
-		let data: number;
+		let data = 0;
 		if (this.#hasSysDevices) data = this.#getDataLinux(index);
 		if (this.#hasSysctl) data = this.#getDataBSD(index);
 
 		return [data, ...this.getData(index + 1)];
+	}
+
+	async #methodExists(): Promise<boolean> {
+		if (isWindows()) return false;
+
+		if (isLinux() && existsSync("/sys/devices/system/cpu")) {
+			this.#hasSysDevices = true;
+			return true;
+		} else if (
+			cmdExists("sysctl")
+			&& await cmdExitCode("sysctl dev.cpu") === 0
+		) {
+			this.#hasSysctl = true;
+			return true;
+		}
+
+		return false;
 	}
 
 	#getDataBSD(index: number): number {

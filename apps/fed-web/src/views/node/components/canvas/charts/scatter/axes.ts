@@ -36,7 +36,7 @@ function drawYAxis(
 		ctx.stroke();
 
 		const text = options.value_formatter ? options.value_formatter(tick) : tick;
-		ctx.fillText(text, 110, pos);
+		ctx.fillText(text.toString(), 110, pos);
 	});
 }
 

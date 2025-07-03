@@ -25,6 +25,7 @@ function pieChart(options: PieInitOptions) {
 	const canvas = createCanvas(options);
 
 	const ctx = canvas.getContext("2d");
+	if (!ctx) return;
 
 	ctx.font = "bold 80px sans-serif";
 	ctx.shadowColor = "black";
@@ -47,7 +48,10 @@ function pieChartUpdate(canvas: HTMLCanvasElement, options: PieUpdateOptions) {
 
 	const { values } = options;
 	const sum = Object.values(values).reduce((partial, n) => partial + n, 0);
-	const sorted_keys = Object.keys(values).sort((a, b) => values[a] - values[b]);
+	const sorted_keys = Object.keys(values).sort(
+		(a, b) => (values[a] ?? 0) - (values[b] ?? 0)
+	);
+
 	const midpoint = Math.floor(size / 2);
 
 	let current_angle = -Math.PI / 2;
@@ -62,6 +66,7 @@ function pieChartUpdate(canvas: HTMLCanvasElement, options: PieUpdateOptions) {
 		const end_angle = current_angle + delta;
 
 		const color = options.colors[key];
+		if (!color) return;
 
 		ctx.fillStyle = color;
 		ctx.shadowBlur = 0;

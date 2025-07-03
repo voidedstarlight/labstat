@@ -6,13 +6,18 @@ import type { diskLayout as diskData } from "systeminformation";
 
 type disk_info = Awaited<ReturnType<typeof diskData>>;
 
+interface TableData {
+	items: string[];
+	tooltip?: string;
+}
+
 function disks(data: disk_info) {
 	const container = document.getElementById("collector-!disks");
 	if (!container) return;
 
 	createCollectorTitle(container, "Disks");
 
-	const table_data = [{
+	const table_data: TableData[] = [{
 		items: ["Mountpoint", "Size", "Type"]
 	}];
 

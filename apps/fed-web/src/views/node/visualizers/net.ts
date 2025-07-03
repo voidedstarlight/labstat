@@ -16,9 +16,11 @@ function net(data: net_info) {
 
 	Object.keys(data).forEach(intf => {
 		const addresses = data[intf];
+		if (!addresses) return;
+
 		addresses.forEach(address => {
 			table_data.push({
-				items: [intf, address.cidr, address.mac]
+				items: [intf, address.cidr ?? "", address.mac]
 			});
 		});
 	});

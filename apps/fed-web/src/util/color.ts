@@ -6,11 +6,14 @@ type rgba_color = [number, number, number, number];
 
 function parseRgba(html_string: string): rgba_color {
 	const values = html_string.slice(5, -1).split(",");
-	return values.map(value => stripFirstLast(value, " "));
+	const formatted = values.map(value => stripFirstLast(value, " "));
+	return formatted as unknown as rgba_color;
 }
 
 function parseRgb(html_string: string): rgba_color {
-	return [...parseRgba(`x${html_string}`), 1];
+	const values = html_string.slice(4, -1).split(",");
+	const formatted = values.map(value => stripFirstLast(value, " "));
+	return [...formatted, 1] as unknown as rgba_color;
 }
 
 function parseHex(html_string: string): rgba_color {
@@ -18,9 +21,9 @@ function parseHex(html_string: string): rgba_color {
 	const values: string[] = [];
 
 	if (3 < length && length < 6) {
-		values.push(html_string.at(1)?.repeat(2));
-		values.push(html_string.at(2)?.repeat(2));
-		values.push(html_string.at(3)?.repeat(2));
+		values.push(html_string.at(1)?.repeat(2) ?? "00");
+		values.push(html_string.at(2)?.repeat(2) ?? "00");
+		values.push(html_string.at(3)?.repeat(2) ?? "00");
 		values.push(html_string.at(4)?.repeat(2) ?? "ff");
 	} else if (length === 7 || length === 9) {
 		values.push(html_string.slice(1, 3));
@@ -29,8 +32,8 @@ function parseHex(html_string: string): rgba_color {
 		values.push(html_string.slice(7, 9) || "ff");
 	}
 
-	const rgb = values.slice(0, 3).map(value => parseInt(value, 16));
-	const a = parseInt(values.at(3), 16) / 255;
+	const rgb = values.slice(0, 3).map(value => parseInt(value, 16)) as rgb_color;
+	const a = parseInt(values.at(3) ?? "ff", 16) / 255;
 
 	return [...rgb, a];
 }
@@ -151,10 +154,10 @@ class Color {
 		const mixed_sum = sum(mixed);
 
 		if (mixed_sum !== 0) {
-			mixed = mixed.map(value => value * brightness / mixed_sum);
+			mixed = mixed.map(value => value * brightness / mixed_sum) as rgb_color;
 		}
 
-		mixed = mixed.map(linearToSrgb);
+		mixed = mixed.map(linearToSrgb) as rgb_color;
 
 		const alpha1 = this.alpha();
 		const alpha2 = 1;
