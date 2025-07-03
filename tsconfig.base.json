@@ -16,6 +16,5 @@
 		"sourceMap": true,
 		"target": "esnext",
 	},
-	"exclude": ["node_modules"],
-	"extends": "@tsconfig/strictest/tsconfig.json"
+	"exclude": ["node_modules"]
 }
