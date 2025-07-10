@@ -49,21 +49,24 @@ server.get("/api/nodes", (_, reply) => {
 	reply.send(getNodes());
 });
 
-server.post("/api/register-node", {
+server.post("/api/register/:ip", {
 	schema: {
 		body: {
 			additionalProperties: false,
 			type: "object",
 			properties: {
-				hostname: {
+				name: {
 					type: "string"
 				}
 			},
-			required: ["hostname"]
+			required: ["name"]
 		}
 	}
-}, (request, reply) => {
-	const { ip } = request;
+}, (
+	request: Fastify.FastifyRequest<{ Params: { ip: string } }>,
+	reply
+) => {
+	const { ip } = request.params;
 
 	writeNode(ip, request.body as NodeOptions);
 	reply.send("");

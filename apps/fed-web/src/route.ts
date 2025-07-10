@@ -1,6 +1,6 @@
 import { deinitAll } from "./deinit";
 import getHash from "./util/hash";
-import mainView from "./views/main";
+import mainView from "./views/dashboard/layout";
 import nodeView from "./views/node/main";
 
 import "./main.css";

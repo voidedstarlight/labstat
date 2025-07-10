@@ -1,11 +1,13 @@
 interface NodeOptions {
 	[key: string]: string;
-	hostname: string;
+	name: string;
 }
 
-async function getNodes(): Promise<NodeOptions> {
+type node_list = Record<string, NodeOptions>;
+
+async function getNodes(): Promise<node_list> {
 	const request = await fetch("/api/nodes");
-	return await request.json() as NodeOptions;
+	return await request.json() as node_list;
 }
 
 export { getNodes, type NodeOptions };
