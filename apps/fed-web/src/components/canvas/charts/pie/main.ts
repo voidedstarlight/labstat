@@ -1,7 +1,7 @@
 import attachListeners, { type value_formatter } from "./label";
 import createCanvas, { type CanvasOptions } from "../../main";
-import { normalizeAngle } from "../../../../../../util/math/geometry";
-import type { Sector } from "../../../../../../util/math/circle";
+import { normalizeAngle } from "../../../../util/math/geometry";
+import type { Sector } from "../../../../util/math/circle";
 
 interface StyledSector extends Sector {
 	color: string;

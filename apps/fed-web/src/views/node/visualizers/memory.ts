@@ -1,4 +1,4 @@
-import { pieChartUpdate } from "../components/canvas/main";
+import { pieChartUpdate } from "../../../components/canvas/main";
 import { readableBytes } from "../../../util/units";
 
 const COLORS = {

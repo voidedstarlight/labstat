@@ -1,4 +1,4 @@
-import { mean as meanFn } from "../../../../../../util/math/stats";
+import { mean as meanFn } from "../../../../util/math/stats";
 import type { value_formatter } from "./main";
 
 interface Stats {

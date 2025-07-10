@@ -1,4 +1,4 @@
-import createCollectorTitle from "../../components/title";
+import createCollectorTitle from "../../../../components/title";
 
 function initLoadavg() {
 	void import("./loadavg.css");

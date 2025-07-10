@@ -1,5 +1,5 @@
-import createCollectorTitle from "../components/title";
-import createList from "../components/list";
+import createCollectorTitle from "../../../components/title";
+import createList from "../../../components/list";
 import type { graphics as graphicsData } from "systeminformation";
 
 type graphics_info = Awaited<ReturnType<typeof graphicsData>>;

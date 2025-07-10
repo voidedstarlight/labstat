@@ -1,5 +1,5 @@
-import createCollectorTitle from "../components/title";
-import { pieChart } from "../components/canvas/charts/pie/main";
+import createCollectorTitle from "../../../components/title";
+import { pieChart } from "../../../components/canvas/charts/pie/main";
 import { readableBytes } from "../../../util/units";
 
 function initMemory() {

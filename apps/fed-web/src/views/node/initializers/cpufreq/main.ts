@@ -1,5 +1,5 @@
-import createCollectorTitle from "../../components/title";
-import { scatterPlot } from "../../components/canvas/charts/scatter/main";
+import createCollectorTitle from "../../../../components/title";
+import { scatterPlot } from "../../../../components/canvas/charts/scatter/main";
 
 function initCpufreq() {
 	void import("./cpufreq.css");

@@ -1,5 +1,5 @@
-import { removeChildren } from "../../../../../util/dom";
-import type { Point } from "../../../../../util/math/geometry";
+import { removeChildren } from "../../../util/dom";
+import type { Point } from "../../../util/math/geometry";
 
 function showLabel(): HTMLParagraphElement {
 	void import("./label.css");

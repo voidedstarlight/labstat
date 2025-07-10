@@ -1,5 +1,5 @@
-import Color from "../../../../../../util/color";
-import { percentInRange } from "../../../../../../util/math/stats";
+import Color from "../../../../util/color";
+import { percentInRange } from "../../../../util/math/stats";
 
 function pointPos(
 	value: number,
