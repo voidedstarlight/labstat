@@ -5,11 +5,15 @@ function registerDeinit(func: deinit_func) {
 	deinit.push(func);
 }
 
-function deinitAll() {
+function deinitHandlers() {
 	deinit.forEach(func => {
 		func();
 	});
 }
 
+function deinitPage() {
+	deinitHandlers();
+}
+
 export default registerDeinit;
-export { deinitAll };
+export { deinitPage };

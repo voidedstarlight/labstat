@@ -1,6 +1,8 @@
-.title,
-.title-logo,
-.title-text,
-.subtitle-kernel {
-	color: var(--fg);
+:where(body[data-view="node"]) {
+	.title,
+	.title-logo,
+	.title-text,
+	.subtitle-kernel {
+		color: var(--fg);
+	}
 }

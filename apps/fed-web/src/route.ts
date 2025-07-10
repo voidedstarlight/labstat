@@ -1,12 +1,12 @@
-import { deinitAll } from "./deinit";
+import { deinitPage } from "./deinit";
 import getHash from "./util/hash";
 import mainView from "./views/dashboard/layout";
-import nodeView from "./views/node/main";
+import nodeView from "./views/node/node";
 
 import "./main.css";
 
 function update() {
-	deinitAll();
+	deinitPage();
 
 	if (document.getElementsByTagName("main").length) {
 		document.getElementsByTagName("main").item(0)?.remove();
