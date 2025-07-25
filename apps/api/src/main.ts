@@ -3,7 +3,14 @@ import fastifyWebsocket from "@fastify/websocket";
 
 import { activeCollectors, getData } from "./data";
 
-const server = Fastify();
+const server = Fastify.fastify({
+	logger: {
+		level: process.env.NODE_ENV === "production" ? "warn" : "info",
+		transport: {
+			target: "pino-pretty"
+		}
+	}
+});
 
 server.register(fastifyWebsocket);
 server.register(ws_server => {
@@ -32,6 +39,6 @@ server.listen({
 		server.log.error(err);
 		process.exit(1);
 	} else {
-		console.log("[ready] http://0.0.0.0:17220");
+		server.log.info("[server] http://0.0.0.0:17220");
 	}
 });

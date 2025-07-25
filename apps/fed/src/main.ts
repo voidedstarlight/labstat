@@ -12,7 +12,10 @@ interface Collectors {
 
 const server = Fastify.fastify({
 	logger: {
-		level: "warn"
+		level: process.env.NODE_ENV === "production" ? "warn" : "info",
+		transport: {
+			target: "pino-pretty"
+		}
 	}
 });
 
@@ -67,7 +70,7 @@ server.get("/api/:node/collectors", async (
 			return await fetch(url);
 		} catch (error: unknown) {
 			const err_str = JSON.stringify(error);
-			server.log.warn(`[route] failed to query ${node} collectors: ${err_str}`);
+			server.log.warn(`[server] failed to get ${node} collectors: ${err_str}`);
 			return;
 		}
 	})();
@@ -86,6 +89,6 @@ server.listen({
 		server.log.error(err);
 		process.exit(1);
 	} else {
-		server.log.info("[ready] http://0.0.0.0:17221");
+		server.log.info("[server] http://0.0.0.0:17221");
 	}
 });

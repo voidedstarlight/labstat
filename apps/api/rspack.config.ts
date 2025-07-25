@@ -5,6 +5,16 @@ export default {
 	entry: {
 		main: "./apps/api/src/main.ts"
 	},
+	externals: {
+		"node:fs": "commonjs fs",
+		"node:crypto": "commonjs crypto",
+		"argon2": "argon2",
+		"pino": "pino",
+		"thread-stream": "thread-stream",
+		"pino-worker": "pino-worker",
+		"pino-file": "pino-file",
+		"pino-pretty": "pino-pretty"
+	},
 	externalsType: "commonjs",
 	module: {
 		rules: [
