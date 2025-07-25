@@ -62,11 +62,12 @@ server.get("/api/:node/collectors", async (
 	const { node } = request.params;
 	const url = `http://${node}:17220/api/collectors`;
 
-	const api_request = await (async function() {
+	const api_request = await (async () => {
 		try {
 			return await fetch(url);
-		} catch (error) {
-			server.log.warn(`[route] failed to query ${node} collectors: ${error}`);
+		} catch (error: unknown) {
+			const err_str = JSON.stringify(error);
+			server.log.warn(`[route] failed to query ${node} collectors: ${err_str}`);
 			return;
 		}
 	})();
