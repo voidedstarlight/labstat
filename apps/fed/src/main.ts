@@ -1,43 +1,26 @@
 import * as Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import fastifyWebsocket from "@fastify/websocket";
-import WebSocket from "ws";
 import { join } from "path";
 
 import { getNodes, initDataFile, writeNode, type NodeOptions } from "./nodes";
+import registerWebsocket from "./data";
 
 interface Collectors {
 	collectors: string[];
 }
 
-const server = Fastify.fastify();
+const server = Fastify.fastify({
+	logger: {
+		level: "warn"
+	}
+});
+
 initDataFile();
 
 server.register(fastifyWebsocket);
 server.register(ws_server => {
-	ws_server.get(
-		"/api/:node/data",
-		{ websocket: true },
-		(socket, request: Fastify.FastifyRequest<{ Params: { node: string } }>) => {
-			const { node } = request.params;
-			const host = `ws://${node}:17220/api/data`;
-
-			const node_socket = new WebSocket(host);
-			const node_ready = new Promise(resolve => {
-				node_socket.addEventListener("open", resolve);
-			});
-
-			node_socket.addEventListener("message", message => {
-				socket.send(message.data);
-			});
-
-			socket.on("message", message => {
-				void node_ready.then(() => {
-					node_socket.send(message);
-				});
-			});
-		}
-	);
+	registerWebsocket(ws_server);
 });
 
 server.register(fastifyStatic, {
@@ -79,7 +62,16 @@ server.get("/api/:node/collectors", async (
 	const { node } = request.params;
 	const url = `http://${node}:17220/api/collectors`;
 
-	const api_request = await fetch(url);
+	const api_request = await (async function() {
+		try {
+			return await fetch(url);
+		} catch (error) {
+			server.log.warn(`[route] failed to query ${node} collectors: ${error}`);
+			return;
+		}
+	})();
+
+	if (!api_request) return;
 	const collectors = await api_request.json() as Collectors;
 
 	reply.send(collectors);
@@ -93,6 +85,6 @@ server.listen({
 		server.log.error(err);
 		process.exit(1);
 	} else {
-		console.log("[ready] http://0.0.0.0:17221");
+		server.log.info("[ready] http://0.0.0.0:17221");
 	}
 });
