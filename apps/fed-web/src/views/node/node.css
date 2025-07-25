@@ -23,4 +23,19 @@
 		font-weight: 700;
 		font-size: 1.2em;
 	}
+
+	.back-button {
+		background-color: transparent;
+		border: none;
+		color: white;
+		font-size: 2.3em;
+		left: 46px;
+		position: absolute;
+		top: 35px;
+		transition: 200ms color;
+
+		&:hover {
+			color: var(--fg);
+		}
+	}
 }

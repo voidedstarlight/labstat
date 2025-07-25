@@ -28,6 +28,14 @@ const INIT_COLLECTORS = [
 	"!graphics"
 ];
 
+function createBackButton(content: HTMLElement) {
+	const button = document.createElement("button");
+	content.appendChild(button);
+	button.innerText = "\u00d7";
+	button.classList.add("back-button");
+	button.addEventListener("mouseup", () => document.location.hash = "");
+}
+
 function createContainer(id: string, parent: HTMLElement) {
 	const container = document.createElement("div");
 	parent.appendChild(container);
@@ -75,6 +83,8 @@ function refreshData(ids?: string[]) {
 
 async function nodeView(content: HTMLElement) {
 	document.body.dataset.view = "node";
+
+	createBackButton(content);
 
 	const node = getHash();
 	const all_collectors = await getCollectors(node);
