@@ -25,17 +25,25 @@
 	}
 
 	.back-button {
-		background-color: transparent;
-		border: none;
-		color: white;
-		font-size: 2.3em;
-		left: 46px;
+		left: 42px;
+		padding: 10px;
 		position: absolute;
-		top: 35px;
-		transition: 200ms color;
+		top: 29px;
 
-		&:hover {
-			color: var(--fg);
+		button {
+			background-color: transparent;
+			border-bottom: 2px solid #eee;
+			border-left: 2px solid #eee;
+			border-right: none;
+			border-top: none;
+			height: 12px;
+			transform: rotate(45deg);
+			transition: 200ms border-color;
+			width: 12px;
+			
+			.back-button:hover & {
+				border-color: var(--fg);
+			}
 		}
 	}
 }

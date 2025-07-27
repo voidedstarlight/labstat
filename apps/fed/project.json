@@ -14,7 +14,10 @@
 				"rspackConfig": "apps/fed/rspack.config.ts"
 			},
 			"configurations": {
-				"dev": { },
+				"dev": {
+					"mode": "development",
+					"optimization": false
+				},
 				"prod": {
 					"mode": "production",
 					"sourcemap": false,

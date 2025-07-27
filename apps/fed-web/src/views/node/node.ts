@@ -29,11 +29,12 @@ const INIT_COLLECTORS = [
 ];
 
 function createBackButton(content: HTMLElement) {
+	const container = document.createElement("div");
+	content.appendChild(container);
+	container.classList.add("back-button");
 	const button = document.createElement("button");
-	content.appendChild(button);
-	button.innerText = "\u00d7";
-	button.classList.add("back-button");
-	button.addEventListener("mouseup", () => document.location.hash = "");
+	container.appendChild(button);
+	container.addEventListener("mouseup", () => document.location.hash = "");
 }
 
 function createContainer(id: string, parent: HTMLElement) {
