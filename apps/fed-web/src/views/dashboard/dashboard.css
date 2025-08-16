@@ -4,6 +4,29 @@
 	main {
 		display: flex;
 		flex-direction: column;
-		margin: 2.5em;
+		margin: 25px;
+	}
+
+	.util-buttons {
+		bottom: 25px;
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		right: 25px;
+
+		button {
+			background-color: #fff2;
+			border: none;
+			border-radius: 8px;
+			color: white;
+			font-size: 1.1em;
+			height: 40px;
+			transition: 200ms background-color;
+			width: 40px;
+
+			&:hover {
+				background-color: #fff3;
+			}
+		}
 	}
 }

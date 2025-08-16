@@ -28,11 +28,23 @@ async function populateNodes(list: HTMLElement) {
 	});
 }
 
+function utilityButtons(content: HTMLElement) {
+	const wrapper = document.createElement("div");
+	content.appendChild(wrapper);
+	wrapper.classList.add("util-buttons");
+
+	const add_button = document.createElement("button");
+	wrapper.appendChild(add_button);
+	add_button.innerText = "+";
+}
+
 function mainView(content: HTMLElement) {
 	document.body.dataset.view = "main";
 	void import("./dashboard.css");
 
 	void populateNodes(content);
+
+	utilityButtons(content);
 }
 
 export default mainView;
