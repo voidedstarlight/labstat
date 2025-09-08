@@ -3,7 +3,7 @@ import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
-		main: "./apps/fed-web/src/route.ts"
+		main: "./apps/web/src/route.ts"
 	},
 	experiments: {
 		css: true
@@ -42,11 +42,11 @@ export default {
 	},
 	plugins: [
 		new rspack.HtmlRspackPlugin({
-			template: "apps/fed-web/src/index.html"
+			template: "apps/web/src/index.html"
 		})
 	],
 	output: {
-		path: resolve(process.cwd(), "dist/fed-web")
+		path: resolve(process.cwd(), "dist/web")
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]

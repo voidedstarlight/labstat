@@ -5,8 +5,8 @@
 	"scripts": {
 		"dev:api": "nx serve api",
 		"build:api": "nx build api",
-		"dev:fed": "concurrently -n 'FED,WEB' -c 'inverse.bold,bgBlack.bold' 'nx serve fed' 'nx build fed-web --watch'",
-		"build:fed": "nx run-many -t build -p fed fed-web",
+		"dev:fed": "concurrently -n 'FED,WEB' -c 'inverse.bold,bgBlack.bold' 'nx serve fed' 'nx build web --watch'",
+		"build:fed": "nx run-many -t build -p fed web",
 		"lint": "eslint ."
 	},
 	"private": true,

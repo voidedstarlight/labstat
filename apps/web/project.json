@@ -1,17 +1,17 @@
 {
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
-	"name": "fed-web",
-	"sourceRoot": "apps/fed-web/src",
+	"name": "web",
+	"sourceRoot": "apps/web/src",
 	"targets": {
 		"build": {
 			"executor": "@nx/rspack:rspack",
 			"outputs": ["{options.outputPath}"],
 			"defaultConfiguration": "prod",
 			"options": {
-				"outputPath": "dist/fed-web",
-				"main": "apps/fed-web/src/route.ts",
-				"tsConfig": "apps/fed-web/tsconfig.app.json",
-				"rspackConfig": "apps/fed-web/rspack.config.ts"
+				"outputPath": "dist/web",
+				"main": "apps/web/src/route.ts",
+				"tsConfig": "apps/web/tsconfig.app.json",
+				"rspackConfig": "apps/web/rspack.config.ts"
 			},
 			"configurations": {
 				"dev": { },

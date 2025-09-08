@@ -3,7 +3,7 @@
 		"isolatedModules": true,
 		"module": "ESNext",
 		"target": "ESNext",
-		"outDir": "../../dist/fed-web-tsc",
+		"outDir": "../../dist/web-tsc",
 		"types": ["node"]
 	},
 	"extends": "./tsconfig.json",
