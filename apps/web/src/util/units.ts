@@ -25,7 +25,7 @@ function readable(value: number, units: string[], precision: number): string {
 
 	const unit = units[shift_amount] ?? "NaN";
 
-	return `${rounded.toString()} ${unit}`;
+	return `${rounded} ${unit}`;
 }
 
 function readableBytes(value: number, precision = 2): string {
