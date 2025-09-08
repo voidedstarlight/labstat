@@ -28,7 +28,7 @@ interface FullOSInfo extends OSInfo {
 
 function generateAscii(text: string): Promise<string> {
 	return new Promise(resolve => {
-		figlet(text, { font: "Slant" }, (_, result?: string) => {
+		figlet(text, { font: "Slant" }, (_: unknown, result?: string) => {
 			resolve(result ?? "");
 		});
 	});
