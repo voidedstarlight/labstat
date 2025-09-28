@@ -1,0 +1,10 @@
+{
+	"dependencies": {
+	},
+	"name": "@labstat/web",
+	"license": "MIT",
+	"scripts": {
+		"dev": "rspack dev"
+	},
+	"version": "0.0.1"
+}

@@ -3,17 +3,10 @@ import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
-		main: "./apps/api/src/main.ts"
+		main: "./src/route.ts"
 	},
-	externals: {
-		"node:fs": "commonjs fs",
-		"node:crypto": "commonjs crypto",
-		"argon2": "argon2",
-		"pino": "pino",
-		"thread-stream": "thread-stream",
-		"pino-worker": "pino-worker",
-		"pino-file": "pino-file",
-		"pino-pretty": "pino-pretty"
+	experiments: {
+		css: true
 	},
 	externalsType: "commonjs",
 	module: {
@@ -32,19 +25,30 @@ export default {
 						}
 					}
 				}
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: "builtin:lightningcss-loader",
+						options: {
+							targets: ">0.4%"
+						}
+					}
+				],
+				type: "css/auto"
 			}
 		]
 	},
-	output: {
-		path: resolve(process.cwd(), "dist/api")
-	},
 	plugins: [
-		new rspack.IgnorePlugin({
-			resourceRegExp: /osx-temperature-sensor/
+		new rspack.HtmlRspackPlugin({
+			template: "./src/index.html"
 		})
 	],
+	output: {
+		path: resolve(process.cwd(), "dist/web")
+	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]
-	},
-	target: "node"
+	}
 };

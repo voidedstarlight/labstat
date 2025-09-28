@@ -1,12 +1,18 @@
 import { resolve } from "path";
-import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
-		main: "./apps/web/src/route.ts"
+		main: "./src/main.ts"
 	},
-	experiments: {
-		css: true
+	externals: {
+		"node:fs": "commonjs fs",
+		"node:crypto": "commonjs crypto",
+		"argon2": "argon2",
+		"pino": "pino",
+		"thread-stream": "thread-stream",
+		"pino-worker": "pino-worker",
+		"pino-file": "pino-file",
+		"pino-pretty": "pino-pretty"
 	},
 	externalsType: "commonjs",
 	module: {
@@ -25,30 +31,14 @@ export default {
 						}
 					}
 				}
-			},
-			{
-				test: /\.css$/,
-				use: [
-					{
-						loader: "builtin:lightningcss-loader",
-						options: {
-							targets: ">0.4%"
-						}
-					}
-				],
-				type: "css/auto"
 			}
 		]
 	},
-	plugins: [
-		new rspack.HtmlRspackPlugin({
-			template: "apps/web/src/index.html"
-		})
-	],
 	output: {
-		path: resolve(process.cwd(), "dist/web")
+		path: resolve(process.cwd(), "dist/api")
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]
-	}
+	},
+	target: "node"
 };

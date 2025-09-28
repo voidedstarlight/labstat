@@ -1,8 +1,9 @@
 import { resolve } from "path";
+import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
-		main: "./apps/fed/src/main.ts"
+		main: "./src/main.ts"
 	},
 	externals: {
 		"node:fs": "commonjs fs",
@@ -35,8 +36,13 @@ export default {
 		]
 	},
 	output: {
-		path: resolve(process.cwd(), "dist/fed")
+		path: resolve(process.cwd(), "dist/node")
 	},
+	plugins: [
+		new rspack.IgnorePlugin({
+			resourceRegExp: /osx-temperature-sensor/
+		})
+	],
 	resolve: {
 		extensions: [".js", ".ts", ".json"]
 	},
