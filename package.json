@@ -1,19 +1,20 @@
 {
-	"dependencies": {
-		"@rspack/cli": "1.5.7",
-		"@rspack/core": "1.5.7"
-	},
 	"devDependencies": {
+		"@tsconfig/node24": "^24.0.1",
+		"@types/node": "24.7.2",
 		"bufferutil": "^4.0.9",
 		"utf-8-validate": "^6.0.5"
 	},
+	"license": "MIT",
 	"name": "labstat",
 	"scripts": {
+		"build:api": "npm run build -w @labstat/api",
+		"build:node": "npm run build -w @labstat/node",
+		"build:web": "npm run build -w @labstat/web",
 		"dev:api": "npm run dev -w @labstat/api",
 		"dev:node": "npm run dev -w @labstat/node",
 		"dev:web": "npm run dev -w @labstat/web"
 	},
-	"license": "MIT",
 	"version": "0.0.1",
 	"workspaces": [
 		"packages/api",
