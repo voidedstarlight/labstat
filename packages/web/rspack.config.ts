@@ -46,7 +46,7 @@ export default {
 		})
 	],
 	output: {
-		path: resolve(process.cwd(), "dist/web")
+		path: resolve(process.cwd(), "../../dist/api/public")
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]

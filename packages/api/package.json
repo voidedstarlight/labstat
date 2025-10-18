@@ -4,6 +4,7 @@
 		"fastify": "^5.6.1"
 	},
 	"devDependencies": {
+		"@tsconfig/node24": "^24.0.1",
 		"@types/ws": "^8.18.1",
 		"@typescript/native-preview": "^7.0.0-dev.20251017.1",
 		"tsc-watch": "^7.2.0"

@@ -1,14 +1,12 @@
 {
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"strict": true
 	},
-	"extends": "../../tsconfig.base.json",
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		}
+	"extends": [
+		"@tsconfig/recommended/tsconfig.json",
+		"../../tsconfig.json"
+	],
+	"include": [
+		"src/**/*.ts",
+		"types.d.ts"
 	]
 }

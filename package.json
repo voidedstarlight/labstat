@@ -1,6 +1,5 @@
 {
 	"devDependencies": {
-		"@tsconfig/node24": "^24.0.1",
 		"@types/node": "24.7.2",
 		"bufferutil": "^4.0.9",
 		"utf-8-validate": "^6.0.5"
