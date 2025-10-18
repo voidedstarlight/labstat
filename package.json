@@ -2,17 +2,16 @@
 	"devDependencies": {
 		"@types/node": "24.7.2",
 		"bufferutil": "^4.0.9",
+		"concurrently": "^9.2.1",
 		"utf-8-validate": "^6.0.5"
 	},
 	"license": "MIT",
 	"name": "labstat",
 	"scripts": {
-		"build:api": "npm run build -w @labstat/api",
 		"build:node": "npm run build -w @labstat/node",
-		"build:web": "npm run build -w @labstat/web",
-		"dev:api": "npm run dev -w @labstat/api",
+		"build:front": "npm run build -w @labstat/web && npm run build -w @labstat/api",
 		"dev:node": "npm run dev -w @labstat/node",
-		"dev:web": "npm run dev -w @labstat/web"
+		"dev:front": "concurrently -n 'WEB,API' -c 'bgBlue.black,bgMagentaBright.black' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api'"
 	},
 	"version": "0.0.1",
 	"workspaces": [
