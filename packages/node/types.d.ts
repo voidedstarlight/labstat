@@ -7,7 +7,7 @@ declare module "figlet" {
 	function figlet(text: string, options: unknown, callback: unknown): unknown;
 	namespace figlet {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
-		const parseFont: (name: string, data: unknown) => void;
+		export const parseFont: (name: string, data: unknown) => void;
 	}
 
 	export default figlet;

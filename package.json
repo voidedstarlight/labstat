@@ -1,8 +1,13 @@
 {
 	"devDependencies": {
+		"@eslint/js": "^9.38.0",
+		"@stylistic/eslint-plugin": "^5.5.0",
 		"@types/node": "24.7.2",
 		"bufferutil": "^4.0.9",
 		"concurrently": "^9.2.1",
+		"eslint": "^9.38.0",
+		"jiti": "^2.6.1",
+		"typescript-eslint": "^8.46.1",
 		"utf-8-validate": "^6.0.5"
 	},
 	"license": "MIT",
@@ -11,7 +16,8 @@
 		"build:node": "npm run build -w @labstat/node",
 		"build:front": "npm run build -w @labstat/web && npm run build -w @labstat/api",
 		"dev:node": "npm run dev -w @labstat/node",
-		"dev:front": "concurrently -n 'WEB,API' -c 'bgBlue.black,bgMagentaBright.black' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api'"
+		"dev:front": "concurrently -n 'WEB,API' -c 'bgBlue.black,bgMagentaBright.black' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api'",
+		"lint": "eslint packages"
 	},
 	"version": "0.0.1",
 	"workspaces": [
