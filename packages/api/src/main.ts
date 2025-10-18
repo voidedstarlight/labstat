@@ -28,7 +28,7 @@ server.register(ws_server => {
 
 server.register(fastifyStatic, {
 	prefix: "/",
-	root: join(process.cwd(), "dist/web")
+	root: join(__dirname, "public")
 });
 
 server.get("/api/nodes", (_, reply) => {
