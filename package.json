@@ -17,12 +17,12 @@
 		"build:front": "npm run build -w @labstat/web && npm run build -w @labstat/api",
 		"dev:node": "npm run dev -w @labstat/node",
 		"dev:front": "concurrently -n 'WEB,API' -c 'bgBlue.black,bgMagentaBright.black' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api'",
-		"lint": "eslint packages"
+		"lint": "eslint apps"
 	},
 	"version": "0.0.1",
 	"workspaces": [
-		"packages/api",
-		"packages/node",
-		"packages/web"
+		"apps/api",
+		"apps/node",
+		"apps/web"
 	]
 }
