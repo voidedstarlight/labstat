@@ -1,4 +1,4 @@
-import { mean as meanFn } from "../../../../util/math/stats";
+import { mean as meanFn } from "@labstat/util/math/stats";
 import type { value_formatter } from "./main";
 
 interface Stats {
@@ -12,14 +12,15 @@ function drawStats(
 	values: number[],
 	value_formatter?: value_formatter
 ) {
-	let mean: number | string = meanFn(...values);
-	let min: number | string = Math.min(...values);
-	let max: number | string = Math.max(...values);
+	// [todo] fix types
+	let mean: string = meanFn(...values).toString();
+	let min: string = Math.min(...values).toString();
+	let max: string = Math.max(...values).toString();
 
 	if (value_formatter) {
-		mean = value_formatter(mean, 1);
-		min = value_formatter(min, 1);
-		max = value_formatter(max, 1);
+		mean = value_formatter(parseFloat(mean), 1);
+		min = value_formatter(parseFloat(min), 1);
+		max = value_formatter(parseFloat(max), 1);
 	}
 
 	const { width } = ctx.canvas;

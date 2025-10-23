@@ -1,0 +1,33 @@
+{
+	"exports": {
+		"./color": "./dist/color.js",
+		"./dom": "./dist/dom.js",
+		"./hash": "./dist/hash.js",
+		"./math/circle": "./dist/math/circle.js",
+		"./math/geometry": "./dist/math/geometry.js",
+		"./math/stats": "./dist/math/stats.js",
+		"./position": "./dist/position.js",
+		"./string": "./dist/string.js",
+		"./svg": "./dist/svg.js",
+		"./units": "./dist/units.js"
+	},
+	"name": "@labstat/util",
+	"scripts": {
+		"dev": "tsc-watch --compileCommand tsgo"
+	},
+	"typesVersions": {
+		"*": {
+			"color": [ "dist/color.js" ],
+			"dom": [ "dist/dom.js" ],
+			"hash": [ "dist/hash.js" ],
+			"math/circle": [ "dist/math/circle.js" ],
+			"math/geometry": [ "dist/math/geometry.js" ],
+			"math/stats": [ "dist/math/stats.js" ],
+			"position": [ "dist/position.js" ],
+			"string": [ "dist/string.js" ],
+			"svg": [ "dist/svg.js" ],
+			"units": [ "dist/units.js" ]
+		}
+	},
+	"version": "0.0.1"
+}

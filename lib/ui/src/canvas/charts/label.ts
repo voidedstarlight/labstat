@@ -1,8 +1,8 @@
-import { removeChildren } from "../../../util/dom";
-import type { Point } from "../../../util/math/geometry";
+import { removeChildren } from "@labstat/util/dom";
+import type { Point } from "@labstat/util/math/geometry";
 
 function showLabel(): HTMLParagraphElement {
-	void import("./label.css");
+	//void import("./label.css");
 
 	const label = (() => {
 		let element = document.getElementById("chart-label");

@@ -1,5 +1,5 @@
-import { pieChartUpdate } from "../../../components/canvas/main";
-import { readableBytes } from "../../../util/units";
+import { pieChartUpdate } from "@labstat/ui/canvas/charts/pie";
+import { readableBytes } from "@labstat/util/units";
 
 const COLORS = {
 	"Free": "#5aba80",

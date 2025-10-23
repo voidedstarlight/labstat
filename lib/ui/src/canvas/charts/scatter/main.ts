@@ -1,5 +1,5 @@
 import attachListeners from "./label";
-import createCanvas, { type CanvasOptions } from "../../main";
+import { createCanvas, type CanvasOptions } from "../../canvas";
 import drawPoints from "./point";
 import drawStats from "./stats";
 import { drawYAxis } from "./axes";

@@ -1,9 +1,12 @@
 {
-	"compilerOptions": {
-	},
+	"compilerOptions": { },
 	"extends": [
 		"@tsconfig/recommended/tsconfig.json",
 		"../../tsconfig.json"
+	],
+	"references": [
+		{ "path": "../../lib/ui" },
+		{ "path": "../../lib/util" }
 	],
 	"include": [
 		"src/**/*.ts",

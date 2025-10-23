@@ -1,4 +1,4 @@
-import createCanvas, { type CanvasOptions } from "../../main";
+import { createCanvas, type CanvasOptions } from "../../canvas";
 
 type chart_type = "line" | "color";
 

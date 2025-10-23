@@ -1,7 +1,7 @@
-import { absoluteWithOverflow } from "../../../../util/position";
-import Color from "../../../../util/color";
+import { absoluteWithOverflow } from "@labstat/util/position";
+import Color from "@labstat/util/color";
 import { hideLabel, moveLabel, showLabel } from "../label";
-import { pointInSector, type Circle } from "../../../../util/math/circle";
+import { pointInSector, type Circle } from "@labstat/util/math/circle";
 import type { StyledSector } from "./main";
 
 type value_formatter = (value: number) => string;

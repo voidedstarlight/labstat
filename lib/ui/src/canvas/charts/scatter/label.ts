@@ -1,12 +1,12 @@
 import { hideLabel, moveLabel, showLabel } from "../label";
 import type { Stats } from "./stats";
-import type { Point } from "../../../../util/math/geometry";
+import type { Point } from "@labstat/util/math/geometry";
 import type { PointData } from "./main";
 
 import {
 	absoluteWithOverflow,
 	relativeInContext
-} from "../../../../util/position";
+} from "@labstat/util/position";
 
 function styleLabel(pos: Point, text: string) {
 	const label = showLabel();

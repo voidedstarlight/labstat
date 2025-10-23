@@ -1,0 +1,30 @@
+{
+	"exports": {
+		"./canvas": "./dist/canvas.js",
+		"./canvas/charts/graph": "./dist/canvas/charts/graph/main.js",
+		"./canvas/charts/label": "./dist/canvas/charts/label.js",
+		"./canvas/charts/pie": "./dist/canvas/charts/pie/main.js",
+		"./canvas/charts/scatter": "./dist/canvas/charts/scatter/main.js",
+		"./list": "./dist/list.js",
+		"./title": "./dist/title.js"
+	},
+	"dependencies": {
+		"@labstat/util": "^0.0.1"
+	},
+	"name": "@labstat/ui",
+	"scripts": {
+		"dev": "tsc-watch --compileCommand tsgo"
+	},
+	"typesVersions": {
+		"*": {
+			"canvas": [ "dist/canvas.js" ],
+			"canvas/charts/graph": [ "dist/canvas/charts/graph/main.js" ],
+			"canvas/charts/label": [ "dist/canvas/charts/label.js" ],
+			"canvas/charts/pie": [ "dist/canvas/charts/pie/main.js" ],
+			"canvas/charts/scatter": [ "dist/canvas/charts/scatter/main.js" ],
+			"list": [ "dist/list.js" ],
+			"title": [ "dist/title.js" ]
+		}
+	},
+	"version": "0.0.1"
+}

@@ -1,6 +1,6 @@
-import createCollectorTitle from "../../../components/title";
-import { pieChart } from "../../../components/canvas/charts/pie/main";
-import { readableBytes } from "../../../util/units";
+import createCollectorTitle from "@labstat/ui/title";
+import { pieChart } from "@labstat/ui/canvas/charts/pie";
+import { readableBytes } from "@labstat/util/units";
 
 function initMemory() {
 	const container = document.getElementById("collector-memory");

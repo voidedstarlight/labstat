@@ -7,10 +7,7 @@
 		"systeminformation": "^5.27.10"
 	},
 	"devDependencies": {
-		"@tsconfig/node24": "^24.0.1",
-		"@types/figlet": "^1.7.0",
-		"@typescript/native-preview": "^7.0.0-dev.20251017.1",
-		"tsc-watch": "^7.2.0"
+		"@types/figlet": "^1.7.0"
 	},
 	"name": "@labstat/node",
 	"license": "MIT",

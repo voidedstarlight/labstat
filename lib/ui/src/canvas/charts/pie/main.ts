@@ -1,7 +1,7 @@
 import attachListeners, { type value_formatter } from "./label";
-import createCanvas, { type CanvasOptions } from "../../main";
-import { normalizeAngle } from "../../../../util/math/geometry";
-import type { Sector } from "../../../../util/math/circle";
+import {createCanvas, type CanvasOptions } from "../../canvas";
+import { normalizeAngle } from "@labstat/util/math/geometry";
+import type { Sector } from "@labstat/util/math/circle";
 
 interface StyledSector extends Sector {
 	color: string;
@@ -20,7 +20,7 @@ interface PieUpdateOptions {
 }
 
 function pieChart(options: PieInitOptions) {
-	void import("./pie.css");
+	//void import("./pie.css");
 
 	const canvas = createCanvas(options);
 

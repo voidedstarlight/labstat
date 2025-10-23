@@ -1,5 +1,5 @@
-import createCollectorTitle from "../../../components/title";
-import createList from "../../../components/list";
+import createCollectorTitle from "@labstat/ui/title";
+import createList from "@labstat/ui/list";
 import type { NetworkInterfaceInfo } from "os";
 
 type net_info = Record<string, NetworkInterfaceInfo[]>;

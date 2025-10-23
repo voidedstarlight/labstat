@@ -6,7 +6,7 @@
  */
 
 import json from "./os_aliases.json";
-import { padNewLine } from "../../../../util/string";
+import { padNewLine } from "@labstat/util/string";
 
 const OS_ALIAS = json.aliases as Record<string, string>;
 

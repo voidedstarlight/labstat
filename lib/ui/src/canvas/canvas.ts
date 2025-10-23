@@ -13,6 +13,10 @@ function createCanvas(options: CanvasOptions): HTMLCanvasElement {
 	return canvas;
 }
 
-export default createCanvas;
-export { type CanvasOptions };
-export * from "./charts/pie/main";
+export * as graph from "./charts/graph/main";
+export * as pie from "./charts/pie/main";
+export * as scatter from "./charts/scatter/main";
+
+export * from "./charts/label";
+
+export { createCanvas, type CanvasOptions };

@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"incremental": true,
+		"lib": [ "DOM", "ES2022" ],
+		"outDir": "./dist",
+		"rootDir": "./src"
+	},
+	"extends": [
+		"@tsconfig/recommended/tsconfig.json",
+		"../../tsconfig.json"
+	],
+	"references": [
+		{ "path": "../util" }
+	],
+	"include": [
+		"src/**/*.ts"
+	]
+}
