@@ -1,11 +1,11 @@
 import eslint from "@eslint/js";
+import { globalIgnores } from "eslint/config";
 import stylistic from "@stylistic/eslint-plugin";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
+	globalIgnores(["**/dist"]),
 	eslint.configs.recommended,
-	tseslint.configs.recommendedTypeChecked,
-	tseslint.configs.stylisticTypeChecked,
 	stylistic.configs.customize({
 		braceStyle: "1tbs",
 		commaDangle: "never",
@@ -13,6 +13,8 @@ export default tseslint.config(
 		quotes: "double",
 		semi: true
 	}),
+	tseslint.configs.recommendedTypeChecked,
+	tseslint.configs.stylisticTypeChecked,
 	{
 		languageOptions: {
 			parserOptions: {

@@ -21,7 +21,7 @@
 		"build:node": "npm run build -w @labstat/node",
 		"dev:front": "concurrently -n 'WEB,API,@UI,@UT' -c 'bgBlue.black,bgMagentaBright.black,bgBlack.white' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api' 'npm run dev -w @labstat/ui' 'npm run dev -w @labstat/util'",
 		"dev:node": "npm run dev -w @labstat/node",
-		"lint": "eslint apps"
+		"lint": "eslint apps lib"
 	},
 	"version": "0.0.1",
 	"workspaces": [
