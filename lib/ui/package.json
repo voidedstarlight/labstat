@@ -1,27 +1,30 @@
 {
 	"exports": {
 		"./canvas": "./dist/canvas.js",
-		"./canvas/charts/graph": "./dist/canvas/charts/graph/main.js",
-		"./canvas/charts/label": "./dist/canvas/charts/label.js",
-		"./canvas/charts/pie": "./dist/canvas/charts/pie/main.js",
-		"./canvas/charts/scatter": "./dist/canvas/charts/scatter/main.js",
+		"./charts/graph": "./dist/charts_graph.js",
+		"./charts/label": "./dist/charts_label.js",
+		"./charts/pie": "./dist/charts_pie.js",
+		"./charts/scatter": "./dist/charts_scatter.js",
 		"./list": "./dist/list.js",
 		"./title": "./dist/title.js"
 	},
 	"dependencies": {
-		"@labstat/util": "^0.0.1"
+		"@labstat/util": "^0.0.1",
+		"@rspack/cli": "^1.5.8",
+		"@rspack/core": "^1.5.8"
 	},
 	"name": "@labstat/ui",
 	"scripts": {
-		"dev": "tsc-watch --compileCommand tsgo"
+		"build": "rspack build",
+		"dev": "rspack build -w"
 	},
 	"typesVersions": {
 		"*": {
 			"canvas": [ "dist/canvas.js" ],
-			"canvas/charts/graph": [ "dist/canvas/charts/graph/main.js" ],
-			"canvas/charts/label": [ "dist/canvas/charts/label.js" ],
-			"canvas/charts/pie": [ "dist/canvas/charts/pie/main.js" ],
-			"canvas/charts/scatter": [ "dist/canvas/charts/scatter/main.js" ],
+			"charts/graph": [ "dist/charts_graph.js" ],
+			"charts/label": [ "dist/charts_label.js" ],
+			"charts/pie": [ "dist/charts_pie.js" ],
+			"charts/scatter": [ "dist/charts_scatter.js" ],
 			"list": [ "dist/list.js" ],
 			"title": [ "dist/title.js" ]
 		}

@@ -1,7 +1,7 @@
 import { readableHertz } from "@labstat/util/units";
 import {
 	scatterPlotUpdate
-} from "@labstat/ui/canvas/charts/scatter";
+} from "@labstat/ui/charts/scatter";
 
 function cpufreq(data: unknown) {
 	const canvas = document.getElementById("cpufreq-canvas") as HTMLCanvasElement;

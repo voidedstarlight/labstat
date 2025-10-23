@@ -1,4 +1,4 @@
-import { pieChartUpdate } from "@labstat/ui/canvas/charts/pie";
+import { pieChartUpdate } from "@labstat/ui/charts/pie";
 import { readableBytes } from "@labstat/util/units";
 
 const COLORS = {

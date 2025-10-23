@@ -4,8 +4,8 @@
 		"@labstat/util": "^0.0.1"
 	},
 	"devDependencies": {
-		"@rspack/cli": "1.5.8",
-		"@rspack/core": "1.5.8"
+		"@rspack/cli": "^1.5.8",
+		"@rspack/core": "^1.5.8"
 	},
 	"name": "@labstat/web",
 	"license": "MIT",

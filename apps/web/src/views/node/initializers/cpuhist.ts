@@ -1,5 +1,5 @@
 import createCollectorTitle from "@labstat/ui/title";
-import { graph } from "@labstat/ui/canvas/charts/graph";
+import { graph } from "@labstat/ui/charts/graph";
 
 function initCpuhist() {
 	const container = document.getElementById("collector-*cpuhist");

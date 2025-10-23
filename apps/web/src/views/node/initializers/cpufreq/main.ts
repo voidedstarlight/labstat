@@ -1,5 +1,5 @@
 import createCollectorTitle from "@labstat/ui/title";
-import { scatterPlot } from "@labstat/ui/canvas/charts/scatter";
+import { scatterPlot } from "@labstat/ui/charts/scatter";
 
 function initCpufreq() {
 	void import("./cpufreq.css");

@@ -1,5 +1,5 @@
 import createCollectorTitle from "@labstat/ui/title";
-import { pieChart } from "@labstat/ui/canvas/charts/pie";
+import { pieChart } from "@labstat/ui/charts/pie";
 import { readableBytes } from "@labstat/util/units";
 
 function initMemory() {
