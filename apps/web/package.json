@@ -1,7 +1,7 @@
 {
 	"dependencies": {
-		"@labstat/ui": "^0.0.1",
-		"@labstat/util": "^0.0.1"
+		"@labstat/ui": "0.0.1",
+		"@labstat/util": "0.0.1"
 	},
 	"devDependencies": {
 		"@rspack/cli": "^1.5.8",

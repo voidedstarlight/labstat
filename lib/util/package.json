@@ -13,6 +13,7 @@
 	},
 	"name": "@labstat/util",
 	"scripts": {
+		"build": "tsc -b",
 		"dev": "tsc-watch --compileCommand tsgo"
 	},
 	"typesVersions": {
