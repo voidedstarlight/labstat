@@ -1,39 +1,41 @@
-import { CPUFreq, LoadAvg } from "./collectors/cpu";
-import Memory from "./collectors/memory";
-import OS from "./collectors/os";
-import type Collector from "./collectors/base";
+import type { FastifyInstance, FastifyRequest } from "fastify";
+import WebSocket from "ws";
 
-import {
-	Disks, Graphics, Hostname, Network, Uptime
-} from "./collectors/core";
+function registerWebsocket(ws_server: FastifyInstance) {
+	ws_server.get(
+		"/api/:node/data",
+		{ websocket: true },
+		(socket, request: FastifyRequest<{ Params: { node: string } }>) => {
+			const { node } = request.params;
+			const host = `ws://${node}:17220/api/data`;
 
-// eslint-disable-next-line @typescript-eslint/prefer-function-type
-const all_collectors: { new(): Collector }[] = [
-	CPUFreq, Disks, Graphics, Hostname, LoadAvg, Memory, Network, OS, Uptime
-];
+			const node_socket = (() => {
+				try {
+					return new WebSocket(host);
+				} catch (error: unknown) {
+					const err_str = JSON.stringify(error);
+					ws_server.log.warn(`[data] Failed to connect to ${host}: ${err_str}`);
+					return;
+				}
+			})();
 
-const active_collectors: Record<string, Collector | null> = {};
+			if (!node_socket) return;
 
-all_collectors.forEach(collector => {
-	const instance = new collector();
+			const node_ready = new Promise(resolve => {
+				node_socket.addEventListener("open", resolve);
+			});
 
-	if (!instance.inactive) {
-		active_collectors[instance.id] = instance;
-	}
-});
+			node_socket.addEventListener("message", message => {
+				socket.send(message.data);
+			});
 
-function activeCollectors(): string[] {
-	return Object.keys(active_collectors);
+			socket.on("message", message => {
+				void node_ready.then(() => {
+					node_socket.send(message);
+				});
+			});
+		}
+	);
 }
 
-async function getData(id: string): Promise<string> {
-	const collector = active_collectors[id];
-
-	if (collector) {
-		return JSON.stringify(await collector.getData());
-	}
-
-	return "";
-}
-
-export { activeCollectors, getData };
+export default registerWebsocket;

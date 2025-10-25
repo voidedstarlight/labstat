@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"sourceMap": true
+	},
+	"references": [
+		{ "path": "lib/ui" },
+		{ "path": "lib/util" }
+	]
+}

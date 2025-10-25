@@ -1,0 +1,17 @@
+{
+	"dependencies": {
+		"@labstat/ui": "0.0.1",
+		"@labstat/util": "0.0.1"
+	},
+	"devDependencies": {
+		"@rspack/cli": "^1.5.8",
+		"@rspack/core": "^1.5.8"
+	},
+	"name": "@labstat/web",
+	"license": "MIT",
+	"scripts": {
+		"build": "rspack build",
+		"dev": "rspack build -w"
+	},
+	"version": "0.0.1"
+}

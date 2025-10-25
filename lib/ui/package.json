@@ -1,0 +1,52 @@
+{
+	"exports": {
+		"./canvas": "./dist/canvas.mjs",
+		"./charts/graph": "./dist/charts_graph.mjs",
+		"./charts/label": "./dist/charts_label.mjs",
+		"./charts/pie": "./dist/charts_pie.mjs",
+		"./charts/scatter": "./dist/charts_scatter.mjs",
+		"./list": "./dist/list.mjs",
+		"./title": "./dist/title.mjs"
+	},
+	"dependencies": {
+		"@labstat/util": "0.0.1",
+		"@rspack/cli": "^1.5.8",
+		"@rspack/core": "^1.5.8"
+	},
+	"name": "@labstat/ui",
+	"scripts": {
+		"build": "rspack build",
+		"dev": "rspack build -w"
+	},
+	"type": "module",
+	"typesVersions": {
+		"*": {
+			"canvas": [
+				"dist/canvas.mjs"
+			],
+			"charts/graph": [
+				"dist/charts_graph.mjs"
+			],
+			"charts/label": [
+				"dist/charts_label.mjs"
+			],
+			"charts/pie": [
+				"dist/charts_pie.mjs"
+			],
+			"charts/scatter": [
+				"dist/charts_scatter.mjs"
+			],
+			"list": [
+				"dist/list.mjs"
+			],
+			"title": [
+				"dist/title.mjs"
+			]
+		}
+	},
+	"version": "0.0.1",
+	"devDependencies": {
+		"css-loader": "^7.1.2",
+		"style-loader": "^4.0.0"
+	}
+}

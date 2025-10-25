@@ -1,14 +1,15 @@
 {
-	"compilerOptions": {
-		"esModuleInterop": true,
-		"strict": true,
-	},
-	"extends": "../../tsconfig.base.json",
-	"files": [],
-	"include": [],
+	"compilerOptions": { },
+	"extends": [
+		"@tsconfig/recommended/tsconfig.json",
+		"../../tsconfig.json"
+	],
 	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		}
+		{ "path": "../../lib/ui" },
+		{ "path": "../../lib/util" }
+	],
+	"include": [
+		"src/**/*.ts",
+		"types.d.ts"
 	]
 }

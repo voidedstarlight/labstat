@@ -1,7 +1,7 @@
-import createCollectorTitle from "../../../components/title";
-import createList from "../../../components/list";
-import { readableBytes } from "../../../util/units";
-import { truncate } from "../../../util/string";
+import createCollectorTitle from "@labstat/ui/title";
+import createList from "@labstat/ui/list";
+import { readableBytes } from "@labstat/util/units";
+import { truncate } from "@labstat/util/string";
 import type { diskLayout as diskData } from "systeminformation";
 
 type disk_info = Awaited<ReturnType<typeof diskData>>;

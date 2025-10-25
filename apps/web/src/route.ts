@@ -1,5 +1,5 @@
 import { deinitPage } from "./deinit";
-import getHash from "./util/hash";
+import getHash from "@labstat/util/hash";
 import mainView from "./views/dashboard/layout";
 import nodeView from "./views/node/node";
 

@@ -1,4 +1,4 @@
-import getHash from "../../../util/hash";
+import getHash from "@labstat/util/hash";
 
 function hostname(data: { hostname: string }) {
 	const subtitle = document.getElementById("subtitle-host");

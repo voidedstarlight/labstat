@@ -1,4 +1,4 @@
-import getHash from "../../util/hash";
+import getHash from "@labstat/util/hash";
 import initCpufreq from "./initializers/cpufreq/main";
 import initCpuhist from "./initializers/cpuhist";
 import initLoadavg from "./initializers/loadavg/main";

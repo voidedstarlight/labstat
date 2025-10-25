@@ -3,7 +3,7 @@ import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
-		main: "./apps/web/src/route.ts"
+		main: "./src/route.ts"
 	},
 	experiments: {
 		css: true
@@ -32,7 +32,7 @@ export default {
 					{
 						loader: "builtin:lightningcss-loader",
 						options: {
-							targets: ">0.4%"
+							targets: ">0.5%"
 						}
 					}
 				],
@@ -42,11 +42,11 @@ export default {
 	},
 	plugins: [
 		new rspack.HtmlRspackPlugin({
-			template: "apps/web/src/index.html"
+			template: "./src/index.html"
 		})
 	],
 	output: {
-		path: resolve(process.cwd(), "dist/web")
+		path: resolve(process.cwd(), "../../dist/api/public")
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]

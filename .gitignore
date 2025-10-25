@@ -2,7 +2,8 @@
 /data
 
 # compiled output
-dist
+**/dist
+**/tsconfig.tsbuildinfo
 tmp
 out-tsc
 

@@ -1,14 +1,12 @@
 {
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"strict": true,
+		"outDir": "../../dist/api"
 	},
-	"extends": "../../tsconfig.base.json",
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		}
+	"extends": [
+		"@tsconfig/node24/tsconfig.json",
+		"../../tsconfig.json"
+	],
+	"include": [
+		"src/**/*.ts"
 	]
 }

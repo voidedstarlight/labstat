@@ -1,4 +1,4 @@
-import { addGraphData } from "../../../components/canvas/charts/graph/main";
+import { addGraphData } from "@labstat/ui/charts/graph";
 
 function updateHist(data: unknown) {
 	const canvas = document.getElementById("cpuhist-canvas") as HTMLCanvasElement;
