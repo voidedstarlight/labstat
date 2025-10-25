@@ -1,7 +1,7 @@
 import { resolve } from "path";
-import { rspack } from "@rspack/core";
 
 export default {
+	devtool: false,
 	entry: {
 		canvas: "./src/canvas/canvas.ts",
 		charts_graph: "./src/canvas/charts/graph/main.ts",
@@ -12,10 +12,8 @@ export default {
 		title: "./src/title.ts"
 	},
 	experiments: {
-		css: true,
-		//outputModules: true
+		css: true
 	},
-	//externalsType: "commonjs",
 	module: {
 		rules: [
 			{
@@ -36,34 +34,28 @@ export default {
 			{
 				test: /\.css$/,
 				use: [
+					"style-loader",
+					"css-loader",
 					{
 						loader: "builtin:lightningcss-loader",
 						options: {
-							targets: ">0.4%"
+							targets: ">0.5%"
 						}
 					}
 				],
-				type: "css/auto"
+				type: "javascript/auto"
 			}
-		]
-	},
-	optimization: {
-		minimizer: [
-			new rspack.SwcJsMinimizerRspackPlugin({
-				module: true,
-				minify: false
-			})
 		]
 	},
 	output: {
 		chunkFormat: "module",
-    chunkLoading: "import",
+		chunkLoading: "import",
 		library: {
 			type: "module"
 		},
 		module: true,
 		path: resolve(process.cwd(), "dist"),
-		workerChunkLoading: "import",
+		workerChunkLoading: "import"
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]

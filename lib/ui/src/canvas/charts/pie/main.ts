@@ -20,7 +20,7 @@ interface PieUpdateOptions {
 }
 
 function pieChart(options: PieInitOptions) {
-	//void import("./pie.css");
+	void import("./pie.css");
 
 	const canvas = createCanvas(options);
 
