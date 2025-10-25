@@ -1,4 +1,5 @@
 import { resolve } from "path";
+import { rspack } from "@rspack/core";
 
 export default {
 	entry: {
@@ -11,9 +12,10 @@ export default {
 		title: "./src/title.ts"
 	},
 	experiments: {
-		css: true
+		css: true,
+		//outputModules: true
 	},
-	externalsType: "commonjs",
+	//externalsType: "commonjs",
 	module: {
 		rules: [
 			{
@@ -45,8 +47,23 @@ export default {
 			}
 		]
 	},
+	optimization: {
+		minimizer: [
+			new rspack.SwcJsMinimizerRspackPlugin({
+				module: true,
+				minify: false
+			})
+		]
+	},
 	output: {
-		path: resolve(process.cwd(), "dist")
+		chunkFormat: "module",
+    chunkLoading: "import",
+		library: {
+			type: "module"
+		},
+		module: true,
+		path: resolve(process.cwd(), "dist"),
+		workerChunkLoading: "import",
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".json"]

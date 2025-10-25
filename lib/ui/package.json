@@ -1,12 +1,12 @@
 {
 	"exports": {
-		"./canvas": "./dist/canvas.js",
-		"./charts/graph": "./dist/charts_graph.js",
-		"./charts/label": "./dist/charts_label.js",
-		"./charts/pie": "./dist/charts_pie.js",
-		"./charts/scatter": "./dist/charts_scatter.js",
-		"./list": "./dist/list.js",
-		"./title": "./dist/title.js"
+		"./canvas": "./dist/canvas.mjs",
+		"./charts/graph": "./dist/charts_graph.mjs",
+		"./charts/label": "./dist/charts_label.mjs",
+		"./charts/pie": "./dist/charts_pie.mjs",
+		"./charts/scatter": "./dist/charts_scatter.mjs",
+		"./list": "./dist/list.mjs",
+		"./title": "./dist/title.mjs"
 	},
 	"dependencies": {
 		"@labstat/util": "^0.0.1",
@@ -18,15 +18,16 @@
 		"build": "rspack build",
 		"dev": "rspack build -w"
 	},
+	"type": "module",
 	"typesVersions": {
 		"*": {
-			"canvas": [ "dist/canvas.js" ],
-			"charts/graph": [ "dist/charts_graph.js" ],
-			"charts/label": [ "dist/charts_label.js" ],
-			"charts/pie": [ "dist/charts_pie.js" ],
-			"charts/scatter": [ "dist/charts_scatter.js" ],
-			"list": [ "dist/list.js" ],
-			"title": [ "dist/title.js" ]
+			"canvas": [ "dist/canvas.mjs" ],
+			"charts/graph": [ "dist/charts_graph.mjs" ],
+			"charts/label": [ "dist/charts_label.mjs" ],
+			"charts/pie": [ "dist/charts_pie.mjs" ],
+			"charts/scatter": [ "dist/charts_scatter.mjs" ],
+			"list": [ "dist/list.mjs" ],
+			"title": [ "dist/title.mjs" ]
 		}
 	},
 	"version": "0.0.1"
