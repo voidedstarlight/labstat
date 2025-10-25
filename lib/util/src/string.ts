@@ -50,6 +50,18 @@ function stripFirstLast(text: string, match: string): string {
 	return strip(strip(text, match), match, -1);
 }
 
+function stripSingleQuotes(text: string): string {
+	return stripFirstLast(text, "'");
+}
+
+function stripDoubleQuotes(text: string): string {
+	return stripFirstLast(text, "\"");
+}
+
+function stripAllQuotes(text: string): string {
+	return stripSingleQuotes(stripDoubleQuotes(text));
+}
+
 function stripGreedy(text: string, match: string, index = 0): string {
 	if (text.at(index) !== match) return text;
 
@@ -67,6 +79,10 @@ function stripGreedy(text: string, match: string, index = 0): string {
 	return stripGreedy(first + last, match, index);
 }
 
+function stripGreedyFirstLast(text: string, match: string): string {
+	return stripGreedy(stripGreedy(text, match), match, -1);
+}
+
 function stripTrailingZeros(text: string): string {
 	return strip(stripGreedy(text, "0", -1), ".", -1);
 }
@@ -74,8 +90,12 @@ function stripTrailingZeros(text: string): string {
 export {
 	padNewLine,
 	strip,
+	stripAllQuotes,
+	stripDoubleQuotes,
 	stripFirstLast,
 	stripGreedy,
+	stripGreedyFirstLast,
+	stripSingleQuotes,
 	stripTrailingZeros,
 	truncate
 };

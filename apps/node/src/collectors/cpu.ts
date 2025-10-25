@@ -1,9 +1,9 @@
-import { cmdExists, cmdExitCode } from "../util/shell";
+import { cmdExists, cmdExitCode } from "@labstat/util/shell";
 import { execSync } from "child_process";
 import { existsSync, readFileSync } from "fs";
 import { isLinux, isWindows } from "./os";
 import { loadavg } from "os";
-import { round } from "../util/number";
+import { round } from "@labstat/util/number";
 import type Collector from "./base";
 
 function invokeSysctl(name: string): string | undefined {

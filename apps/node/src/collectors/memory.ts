@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "fs";
 import { isLinux } from "./os";
-import { stripGreedyFirstLast } from "../util/string";
+import { stripGreedyFirstLast } from "@labstat/util/string";
 import type Collector from "./base";
 
 type memory_data = Record<string, number>;

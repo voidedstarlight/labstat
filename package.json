@@ -20,7 +20,7 @@
 		"build:front": "npm run build -w @labstat/web && npm run build -w @labstat/api",
 		"build:node": "npm run build -w @labstat/node",
 		"dev:front": "concurrently -n 'WEB,API,@UI,@UT' -c 'bgBlue.black,bgMagentaBright.black,bgBlack.white' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api' 'npm run dev -w @labstat/ui' 'npm run dev -w @labstat/util'",
-		"dev:node": "npm run dev -w @labstat/node",
+		"dev:node": "concurrently -n 'SRV,@UT' -c 'bgCyan.black,bgBlack.white' 'npm run dev -w @labstat/node' 'npm run dev -w @labstat/util'",
 		"lint": "eslint apps lib"
 	},
 	"version": "0.0.1",

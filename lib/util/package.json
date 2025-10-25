@@ -6,7 +6,9 @@
 		"./math/circle": "./dist/math/circle.js",
 		"./math/geometry": "./dist/math/geometry.js",
 		"./math/stats": "./dist/math/stats.js",
+		"./number": "./dist/number.js",
 		"./position": "./dist/position.js",
+		"./shell": "./dist/shell.js",
 		"./string": "./dist/string.js",
 		"./svg": "./dist/svg.js",
 		"./units": "./dist/units.js"
@@ -24,7 +26,9 @@
 			"math/circle": [ "dist/math/circle.js" ],
 			"math/geometry": [ "dist/math/geometry.js" ],
 			"math/stats": [ "dist/math/stats.js" ],
+			"number": [ "dist/number.js" ],
 			"position": [ "dist/position.js" ],
+			"shell": [ "dist/shell.js" ],
 			"string": [ "dist/string.js" ],
 			"svg": [ "dist/svg.js" ],
 			"units": [ "dist/units.js" ]

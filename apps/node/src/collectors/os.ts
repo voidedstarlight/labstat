@@ -1,7 +1,7 @@
 import type Collector from "./base";
 import figlet from "figlet";
 import slant from "figlet/importable-fonts/Slant.js";
-import { stripAllQuotes } from "../util/string";
+import { stripAllQuotes } from "@labstat/util/string";
 import { existsSync, readFileSync } from "fs";
 import { execSync } from "child_process";
 
