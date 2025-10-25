@@ -9,8 +9,8 @@
 	"name": "@labstat/api",
 	"license": "MIT",
 	"scripts": {
-		"dev": "tsc-watch --compileCommand tsgo --onSuccess 'node ../../dist/api/main.js'",
-		"build": "tsc -b"
+		"build": "tsc -b",
+		"dev": "tsc-watch --compileCommand tsgo --onSuccess 'node ../../dist/api/main.js'"
 	},
 	"version": "0.0.1"
 }
