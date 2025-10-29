@@ -17,8 +17,10 @@
 	"license": "MIT",
 	"name": "labstat",
 	"scripts": {
-		"build:front": "npm run build -w @labstat/web && npm run build -w @labstat/api",
-		"build:node": "npm run build -w @labstat/node",
+		"build:front": "npm run build:ui && npm run build:util && npm run build -w @labstat/web && npm run build -w @labstat/api",
+		"build:node": "npm run build:util && npm run build -w @labstat/node",
+		"build:ui": "npm run build -w @labstat/ui",
+		"build:util": "npm run build -w @labstat/util",
 		"dev:front": "concurrently -n '@UI,@UT,WEB,API' -c 'bgBlack.white,bgBlack.white,bgBlue.black,bgMagentaBright.black' 'npm run dev -w @labstat/ui' 'npm run dev -w @labstat/util' 'npm run dev -w @labstat/web' 'npm run dev -w @labstat/api'",
 		"dev:node": "concurrently -n '@UT,SRV' -c 'bgBlack.white,bgCyan.black' 'npm run dev -w @labstat/util' 'npm run dev -w @labstat/node'",
 		"lint": "eslint apps lib"
