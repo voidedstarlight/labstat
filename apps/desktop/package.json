@@ -1,0 +1,13 @@
+{
+	"devDependencies": {
+		"electron": "^39.0.0"
+	},
+  "license": "MIT",
+	"main": "../../dist/desktop/main.js",
+  "name": "@labstat/desktop",
+  "scripts": {
+		"build": "tsc -b",
+		"start": "electron ."
+  },
+  "version": "0.0.1"
+}
