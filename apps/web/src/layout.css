@@ -15,11 +15,14 @@ table {
 .flex-col {
 	display: flex;
 	flex-direction: column;
-	gap: 1em;
 }
 
 .flex-row {
 	display: flex;
 	flex-direction: row;
-	gap: 1em;
 }
+
+.flex-fill {
+	justify-content: space-between;
+}
+

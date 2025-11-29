@@ -1,4 +1,3 @@
-@import url("../../../../monospace.css");
 @import url("./colors.css");
 
 :where(body[data-view="node"]) {

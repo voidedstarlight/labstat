@@ -4,7 +4,7 @@
 	main {
 		display: flex;
 		flex-direction: column;
-		margin: 25px;
+		margin: 5.714%;
 	}
 
 	.util-buttons {
@@ -17,7 +17,7 @@
 		button {
 			background-color: #fff2;
 			border: none;
-			border-radius: 8px;
+			border-radius: 13px;
 			color: white;
 			font-size: 1.1em;
 			height: 40px;
