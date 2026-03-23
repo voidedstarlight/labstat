@@ -1,5 +1,5 @@
 # runtime data
-/data
+data/
 
 # compiled output
 **/dist

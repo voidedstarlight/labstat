@@ -13,7 +13,7 @@ interface NodeOptions {
 
 type nodes_list = Record<string, NodeOptions>;
 
-const file = join(process.cwd(), "data/fed/nodes.json");
+const file = join(process.cwd(), "data/nodes.json");
 
 let nodes: nodes_list = {};
 
