@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"outDir": "../../dist/api"
+		"outDir": "../../dist/api",
+		"rootDir": "./src"
 	},
 	"extends": [
 		"@tsconfig/node24/tsconfig.json",
