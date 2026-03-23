@@ -1,10 +1,12 @@
 {
 	"exports": {
 		"./canvas": "./dist/canvas.mjs",
+		"./charts/gauge": "./dist/charts_gauge.mjs",
 		"./charts/graph": "./dist/charts_graph.mjs",
 		"./charts/label": "./dist/charts_label.mjs",
 		"./charts/pie": "./dist/charts_pie.mjs",
 		"./charts/scatter": "./dist/charts_scatter.mjs",
+		"./fonts": "./dist/fonts.mjs",
 		"./list": "./dist/list.mjs",
 		"./title": "./dist/title.mjs"
 	},
@@ -24,6 +26,9 @@
 			"canvas": [
 				"dist/canvas.mjs"
 			],
+			"charts/gauge": [
+				"dist/charts_gauge.mjs"
+			],
 			"charts/graph": [
 				"dist/charts_graph.mjs"
 			],
@@ -35,6 +40,9 @@
 			],
 			"charts/scatter": [
 				"dist/charts_scatter.mjs"
+			],
+			"fonts": [
+				"dist/fonts.mjs"
 			],
 			"list": [
 				"dist/list.mjs"

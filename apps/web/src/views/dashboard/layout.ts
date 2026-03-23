@@ -1,4 +1,17 @@
+import GaugeChart from "@labstat/ui/charts/gauge";
 import { getNodes, type NodeOptions } from "../../api";
+
+function displayHeading(content: HTMLElement) {
+	const heading = document.createElement("div");
+	content.appendChild(heading);
+	heading.classList.add("flex-row");
+
+	const cpu_gauge = new GaugeChart({
+		container: heading,
+		label: "CPU %",
+		length: 300
+	});
+}
 
 function displayNode(ip: string, data: NodeOptions, list: HTMLElement) {
 	const container = document.createElement("node");
@@ -85,13 +98,11 @@ function displayNode(ip: string, data: NodeOptions, list: HTMLElement) {
 	disk_data.appendChild(disk_label);
 }
 
-async function populateNodes(list: HTMLElement) {
-	const nodes = await getNodes();
-
-	Object.keys(nodes).forEach(ip => {
+function populateNodes(list: HTMLElement) {
+	getNodes().then(nodes => Object.keys(nodes).forEach(ip => {
 		const data = nodes[ip];
 		displayNode(ip, data, list);
-	});
+	}));
 }
 
 function utilityButtons(content: HTMLElement) {
@@ -108,7 +119,8 @@ function mainView(content: HTMLElement) {
 	document.body.dataset.view = "main";
 	void import("./layout.css");
 
-	void populateNodes(content);
+	displayHeading(content);
+	populateNodes(content);
 
 	utilityButtons(content);
 }

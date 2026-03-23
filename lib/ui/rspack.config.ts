@@ -4,10 +4,12 @@ export default {
 	devtool: false,
 	entry: {
 		canvas: "./src/canvas/canvas.ts",
+		charts_gauge: "./src/canvas/charts/gauge/main.ts",
 		charts_graph: "./src/canvas/charts/graph/main.ts",
 		charts_label: "./src/canvas/charts/label.ts",
 		charts_pie: "./src/canvas/charts/pie/main.ts",
 		charts_scatter: "./src/canvas/charts/scatter/main.ts",
+		fonts: "./src/fonts.ts",
 		list: "./src/list.ts",
 		title: "./src/title.ts"
 	},

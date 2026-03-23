@@ -1,9 +1,12 @@
 import { deinitPage } from "./deinit";
 import getHash from "@labstat/util/hash";
+import loadFonts from "@labstat/ui/fonts";
 import mainView from "./views/dashboard/layout";
 import nodeView from "./views/node/node";
 
 import "./main.css";
+
+void loadFonts();
 
 function update() {
 	deinitPage();

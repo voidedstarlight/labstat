@@ -10,14 +10,6 @@
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 800;
   src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4Z1xlFQ.woff2) format("woff2");
 }
