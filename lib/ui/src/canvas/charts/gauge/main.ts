@@ -12,8 +12,10 @@ interface GaugeOptions {
 
 class GaugeChart {
 	#canvas: HTMLCanvasElement;
-	#label?: string;
-	#max: int;
+	/*
+	 * #label?: string;
+	 * #max: int;
+	 */
 	#min: int;
 
 	constructor(options: GaugeOptions) {
@@ -26,7 +28,9 @@ class GaugeChart {
 		this.#max = options.max ?? 100;
 		this.#min = options.min ?? 0;
 
-		loadFonts().then(() => this.setData(this.#min));
+		void loadFonts().then(() => {
+			this.setData(this.#min);
+		});
 	}
 
 	setData(data: int) {
@@ -40,7 +44,6 @@ class GaugeChart {
 		ctx.textAlign = "center";
 		ctx.fillText(data, mid, mid);
 
-
 		ctx.strokeStyle = "#fff";
 		arc({
 			angle1: 4 * Math.PI / 5,
@@ -52,12 +55,14 @@ class GaugeChart {
 			x: mid,
 			y: mid
 		});
-		//ctx.beginPath();
-		//ctx.strokeStyle = "white";
 
-		//ctx.moveTo(100, 200);
-		//ctx.arc(mid, mid, mid - 10, 4 * Math.PI / 5, Math.PI / 5);
-		//ctx.stroke();
+		/*
+		 * ctx.beginPath();
+		 * ctx.strokeStyle = "white";
+		 * ctx.moveTo(100, 200);
+		 * ctx.arc(mid, mid, mid - 10, 4 * Math.PI / 5, Math.PI / 5);
+		 * ctx.stroke();
+		 */
 	}
 
 	setLength(length: int) {
@@ -67,7 +72,7 @@ class GaugeChart {
 		this.#canvas.height = length * 2;
 	}
 
-	get canvas() {
+	canvas() {
 		return this.#canvas;
 	}
 }

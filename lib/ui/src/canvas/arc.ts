@@ -1,10 +1,10 @@
 interface ArcOptions {
-	angle1: int,
-	angle2: int,
-	ctx: CanvasRenderingContext2D,
-	radius: int,
-	rounding?: int,
-	thickness?: int,
+	angle1: int;
+	angle2: int;
+	ctx: CanvasRenderingContext2D;
+	radius: int;
+	rounding?: int;
+	thickness?: int;
 	x: int;
 	y: int;
 }

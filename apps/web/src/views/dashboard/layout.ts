@@ -6,7 +6,7 @@ function displayHeading(content: HTMLElement) {
 	content.appendChild(heading);
 	heading.classList.add("flex-row");
 
-	const cpu_gauge = new GaugeChart({
+	new GaugeChart({
 		container: heading,
 		label: "CPU %",
 		length: 300
@@ -99,10 +99,12 @@ function displayNode(ip: string, data: NodeOptions, list: HTMLElement) {
 }
 
 function populateNodes(list: HTMLElement) {
-	getNodes().then(nodes => Object.keys(nodes).forEach(ip => {
-		const data = nodes[ip];
-		displayNode(ip, data, list);
-	}));
+	void getNodes().then(nodes => {
+		Object.keys(nodes).forEach(ip => {
+			const data = nodes[ip];
+			displayNode(ip, data, list);
+		});
+	});
 }
 
 function utilityButtons(content: HTMLElement) {
