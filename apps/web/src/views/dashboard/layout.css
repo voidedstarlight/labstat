@@ -10,4 +10,10 @@
 			display: block;
 		}
 	}
+
+	canvas.background {
+		inset: 0;
+		pointer-events: none;
+		position: absolute;
+	}
 }

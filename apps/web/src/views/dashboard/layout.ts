@@ -6,7 +6,6 @@ function mainView(content: HTMLElement) {
 	void import("./layout.css");
 
 	// API call
-
 	const data = [
 		{
 			capabilities: "B",

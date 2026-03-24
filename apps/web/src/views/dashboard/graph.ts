@@ -1,4 +1,6 @@
 import type { NodeData } from "@labstat/util/api";
+import { onResize } from "../../event";
+import { resizeCanvas } from "@labstat/ui/canvas";
 
 interface GraphNode {
 	description: string;
@@ -24,8 +26,8 @@ class Graph {
 	#click_y = 0;
 	#previous_x = 0;
 	#previous_y = 0;
-	#x = 0;
-	#y = 0;
+	#x = 50;
+	#y = 50;
 	#dragging = false;
 
 	#scale = 1;
@@ -34,8 +36,8 @@ class Graph {
 		this.#canvas = document.createElement("canvas");
 		container.appendChild(this.#canvas);
 
-		this.#updateSize();
-		window.addEventListener("resize", this.#updateSize.bind(this));
+		resizeCanvas(this.#canvas);
+		onResize(() => resizeCanvas(this.#canvas));
 		window.requestAnimationFrame(this.#redraw.bind(this));
 
 		this.#registerEvents();
@@ -70,14 +72,6 @@ class Graph {
 		});
 	}
 
-	#updateSize() {
-		this.#canvas.height = window.innerHeight * 2;
-		this.#canvas.width = window.innerWidth * 2;
-
-		this.#canvas.style.height = window.innerHeight + "px";
-		this.#canvas.style.width = window.innerWidth + "px";
-	}
-
 	#screenXY(x: int, y: int) {
 		const width = this.#scale * 500;
 		const height = this.#scale * 180;
@@ -85,68 +79,74 @@ class Graph {
 		return [this.#x + x * (width + 50 * this.#scale) + 50, this.#y + y * (height + 150 * this.#scale) + 50];
 	}
 
+	#s(size: int) {
+		return size * this.#scale;
+	}
+
 	#redraw() {
 		const ctx = this.#canvas.getContext("2d");
 		ctx.globalCompositeOperation = "source-over";
 		ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
 
-		ctx.lineWidth = 5 * this.#scale;
+		ctx.lineWidth = this.#s(6);
 
-		const width = this.#scale * 500;
-		const height = this.#scale * 180;
+		const width = this.#s(500);
+		const height = this.#s(180);
 
-		const margin_x = this.#scale * 36;
-		const margin_y = this.#scale * 45;
+		const margin_x = this.#s(36);
+		const margin_y = this.#s(45);
 
 		this.#nodes.forEach(node => {
 			const [ x, y ] = this.#screenXY(node.x, node.y);
 
 			ctx.beginPath();
-			ctx.roundRect(x, y, width, height, 32 * this.#scale);
+			ctx.roundRect(x, y, width, height, this.#s(32));
 
-			ctx.fillStyle = "#3c384a";
+			ctx.fillStyle = "#282438";
 			ctx.fill();
 
 			const details_x = x + margin_x;
-			const capability_size = this.#scale * 35;
+			const capability_size = this.#s(35);
 
 			node.capabilities.split("").forEach(capability => {
 				ctx.beginPath();
 				ctx.fillStyle = "#fff2";
 
-				ctx.roundRect(details_x, y + height - margin_y - this.#scale * 30, capability_size, capability_size, 10 * this.#scale);
+				ctx.roundRect(details_x, y + height - margin_y - this.#s(30), capability_size, capability_size, this.#s(10));
 				ctx.fill();
 
-				ctx.font = `400 ${22 * this.#scale}px Poppins`;
+				ctx.font = `400 ${this.#s(22)}px Poppins`;
 				ctx.textBaseline = "middle";
 				ctx.textAlign = "center";
 				ctx.fillStyle = "white";
-				ctx.fillText(capability, details_x + capability_size / 2, y + height - margin_y - this.#scale * 28 + capability_size / 2);
+				ctx.fillText(capability, details_x + capability_size / 2, y + height - margin_y - this.#s(28) + capability_size / 2);
 
-				details_x += capability_size + 10 * this.#scale;
+				details_x += capability_size + this.#s(10);
 			});
+
+			if (node.capabilities.length) details_x += this.#s(10);
 
 			ctx.fillStyle = "white";
 			ctx.textAlign = "left";
-			ctx.font = `800 ${48 * this.#scale}px Poppins`;
+			ctx.font = `800 ${this.#s(48)}px Poppins`;
 			ctx.textBaseline = "hanging";
 			ctx.fillText(node.name.toUpperCase(), x + margin_x, y + margin_y);
 
-			ctx.font = `${34 * this.#scale}px 'Maple Mono'`;
+			ctx.font = `${this.#s(34)}px 'Maple Mono'`;
 			ctx.textBaseline = "alphabetic";
 			ctx.fillText(node.ip, details_x, y + height - margin_y);
 
 			const ip_length = ctx.measureText(node.ip).width;
 
 			ctx.fillStyle = "#BBB";
-			ctx.fillText(node.intf, details_x + ip_length + 20 * this.#scale, y + height - margin_y);
+			ctx.fillText(node.intf, details_x + ip_length + this.#s(20), y + height - margin_y);
 		});
 
 		this.#edges.forEach(edge => {
 			const start = this.#screenXY(...edge.start);
 			const end = this.#screenXY(...edge.end);
 
-			ctx.strokeStyle = "#3c384a";
+			ctx.strokeStyle = "#282438";
 			ctx.beginPath();
 			ctx.moveTo(start[0] + width / 2, start[1] + height);
 			ctx.lineTo(end[0] + width / 2, end[1]);

@@ -13,10 +13,18 @@ function createCanvas(options: CanvasOptions): HTMLCanvasElement {
 	return canvas;
 }
 
+function resizeCanvas(canvas: HTMLElement) {
+	canvas.height = window.innerHeight * 2;
+	canvas.width = window.innerWidth * 2;
+
+	canvas.style.height = window.innerHeight + "px";
+	canvas.style.width = window.innerWidth + "px";
+}
+
 export * as graph from "./charts/graph/main";
 export * as pie from "./charts/pie/main";
 export * as scatter from "./charts/scatter/main";
 
 export * from "./charts/label";
 
-export { createCanvas, type CanvasOptions };
+export { createCanvas, resizeCanvas, type CanvasOptions };
