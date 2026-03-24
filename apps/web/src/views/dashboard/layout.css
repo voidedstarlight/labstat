@@ -1,6 +1,8 @@
 @import url("./node.css");
 
 :where(body[data-view="main"]) {
+	overflow: hidden;
+
 	main {
 		background-color: #08031a;
 

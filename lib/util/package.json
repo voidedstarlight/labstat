@@ -1,5 +1,6 @@
 {
 	"exports": {
+		"./api": "./dist/api.js",
 		"./color": "./dist/color.js",
 		"./dom": "./dist/dom.js",
 		"./hash": "./dist/hash.js",
@@ -20,6 +21,7 @@
 	},
 	"typesVersions": {
 		"*": {
+			"api": [ "dist/api.js" ],
 			"color": [ "dist/color.js" ],
 			"dom": [ "dist/dom.js" ],
 			"hash": [ "dist/hash.js" ],
