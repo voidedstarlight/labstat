@@ -12,10 +12,6 @@ interface GaugeOptions {
 
 class GaugeChart {
 	#canvas: HTMLCanvasElement;
-	/*
-	 * #label?: string;
-	 * #max: int;
-	 */
 	#min: int;
 
 	constructor(options: GaugeOptions) {
@@ -23,9 +19,7 @@ class GaugeChart {
 		options.container?.appendChild(this.#canvas);
 
 		if (options.length) this.setLength(options.length);
-		this.#label = options.label;
 
-		this.#max = options.max ?? 100;
 		this.#min = options.min ?? 0;
 
 		void loadFonts().then(() => {
