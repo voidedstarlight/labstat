@@ -9,24 +9,32 @@ function mainView(content: HTMLElement) {
 
 	const data = [
 		{
+			capabilities: "B",
 			intf: "bge1",
+			ip: "10.20.1.1",
 			name: "Test Device",
 			description: "Description",
 			children: [
 				{
+					capabilities: "BR",
 					intf: "eth0",
+					ip: "10.20.1.11",
 					name: "Test Child",
 					description: "Description",
 					children: [ ]
 				},
 				{
+					capabilities: "",
 					intf: "eth0",
+					ip: "10.20.1.33",
 					name: "Test Child",
 					description: "Description",
 					children: [ ]
 				},
 				{
+					capabilities: "BW",
 					intf: "eth0",
+					ip: "10.20.1.15",
 					name: "Test Child",
 					description: "Description",
 					children: [ ]
@@ -34,7 +42,9 @@ function mainView(content: HTMLElement) {
 			]
 		},
 		{
+			capabilities: "B",
 			intf: "eth0",
+			ip: "172.1.1.1",
 			name: "Separate",
 			description: "Description",
 			children: [ ]

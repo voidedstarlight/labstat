@@ -3,6 +3,7 @@ import type { NodeData } from "@labstat/util/api";
 interface GraphNode {
 	description: string;
 	intf: string;
+	ip: string;
 	name: string;
 	x: int;
 	y: int;
@@ -65,7 +66,7 @@ class Graph {
 		});
 
 		this.#canvas.addEventListener("wheel", event => {
-			this.#scale += (event.deltaX + event.deltaY) / 1200;
+			this.#scale -= (event.deltaX + event.deltaY) / 1200;
 		});
 	}
 
@@ -78,10 +79,10 @@ class Graph {
 	}
 
 	#screenXY(x: int, y: int) {
-		const width = this.#scale * 300;
-		const height = this.#scale * 90;
+		const width = this.#scale * 500;
+		const height = this.#scale * 180;
 
-		return [this.#x + x * (width + 50) + 50, this.#y + y * (height + 150) + 50];
+		return [this.#x + x * (width + 50 * this.#scale) + 50, this.#y + y * (height + 150 * this.#scale) + 50];
 	}
 
 	#redraw() {
@@ -89,25 +90,56 @@ class Graph {
 		ctx.globalCompositeOperation = "source-over";
 		ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
 
-		ctx.lineWidth = 5;
+		ctx.lineWidth = 5 * this.#scale;
 
-		const width = this.#scale * 300;
-		const height = this.#scale * 90;
+		const width = this.#scale * 500;
+		const height = this.#scale * 180;
+
+		const margin_x = this.#scale * 36;
+		const margin_y = this.#scale * 45;
 
 		this.#nodes.forEach(node => {
 			const [ x, y ] = this.#screenXY(node.x, node.y);
 
 			ctx.beginPath();
-			ctx.roundRect(x, y, width, height, 15);
+			ctx.roundRect(x, y, width, height, 32 * this.#scale);
 
 			ctx.fillStyle = "#3c384a";
 			ctx.fill();
 
+			const details_x = x + margin_x;
+			const capability_size = this.#scale * 35;
+
+			node.capabilities.split("").forEach(capability => {
+				ctx.beginPath();
+				ctx.fillStyle = "#fff2";
+
+				ctx.roundRect(details_x, y + height - margin_y - this.#scale * 30, capability_size, capability_size, 10 * this.#scale);
+				ctx.fill();
+
+				ctx.font = `400 ${22 * this.#scale}px Poppins`;
+				ctx.textBaseline = "middle";
+				ctx.textAlign = "center";
+				ctx.fillStyle = "white";
+				ctx.fillText(capability, details_x + capability_size / 2, y + height - margin_y - this.#scale * 28 + capability_size / 2);
+
+				details_x += capability_size + 10 * this.#scale;
+			});
+
 			ctx.fillStyle = "white";
-			ctx.font = (40 * this.#scale) + "px 'Maple Mono'";
-			ctx.textBaseline = "middle";
-			ctx.textAlign = "center";
-			ctx.fillText(node.name, x + width / 2, y + height / 2);
+			ctx.textAlign = "left";
+			ctx.font = `800 ${48 * this.#scale}px Poppins`;
+			ctx.textBaseline = "hanging";
+			ctx.fillText(node.name.toUpperCase(), x + margin_x, y + margin_y);
+
+			ctx.font = `${34 * this.#scale}px 'Maple Mono'`;
+			ctx.textBaseline = "alphabetic";
+			ctx.fillText(node.ip, details_x, y + height - margin_y);
+
+			const ip_length = ctx.measureText(node.ip).width;
+
+			ctx.fillStyle = "#BBB";
+			ctx.fillText(node.intf, details_x + ip_length + 20 * this.#scale, y + height - margin_y);
 		});
 
 		this.#edges.forEach(edge => {
@@ -129,8 +161,10 @@ class Graph {
 
 		data.forEach(node => {
 			const node_pos = {
+				capabilities: node.capabilities,
 				description: node.description,
 				intf: node.intf,
+				ip: node.ip,
 				name: node.name,
 				x: max_x,
 				y: level
