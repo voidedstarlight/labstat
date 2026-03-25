@@ -76,17 +76,46 @@ class Graph {
 		const width = this.#scale * 500;
 		const height = this.#scale * 180;
 
-		return [this.#x + x * (width + 50 * this.#scale) + 50, this.#y + y * (height + 150 * this.#scale) + 50];
+		return [this.#x + x * (width + this.#s(50)) + 50, this.#y + y * (height + this.#s(150)) + 50];
 	}
 
 	#s(size: int) {
 		return size * this.#scale;
 	}
 
+	#gridX(ctx: CanvasRenderingContext2D, x: int, m: int) {
+		if (x >= this.#canvas.width) return;
+
+		ctx.beginPath();
+		ctx.moveTo(x, 0);
+		ctx.lineTo(x, this.#canvas.height);
+		ctx.stroke();
+
+		this.#gridX(ctx, x + m, m)
+	}
+
+	#gridY(ctx: CanvasRenderingContext2D, y: int, m: int) {
+		if (y >= this.#canvas.height) return;
+
+		ctx.beginPath();
+		ctx.moveTo(0, y);
+		ctx.lineTo(this.#canvas.width, y);
+		ctx.stroke();
+
+		this.#gridY(ctx, y + m, m)
+	}
+
 	#redraw() {
 		const ctx = this.#canvas.getContext("2d");
 		ctx.globalCompositeOperation = "source-over";
 		ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
+		ctx.lineWidth = this.#s(3);
+		ctx.strokeStyle = "#130e25";
+
+		const m = this.#s(30);
+
+		this.#gridX(ctx, (Math.floor(-this.#x / m) + 1) * m + this.#x, m);
+		this.#gridY(ctx, (Math.floor(-this.#y / m) + 1) * m + this.#y, m);
 
 		ctx.lineWidth = this.#s(6);
 
