@@ -12,8 +12,8 @@
 	},
 	"dependencies": {
 		"@labstat/util": "0.0.1",
-		"@rspack/cli": "^1.7.9",
-		"@rspack/core": "^1.7.9"
+		"@rspack/cli": "^1.7.11",
+		"@rspack/core": "^1.7.11"
 	},
 	"name": "@labstat/ui",
 	"scripts": {

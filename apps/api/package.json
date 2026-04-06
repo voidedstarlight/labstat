@@ -1,7 +1,7 @@
 {
 	"dependencies": {
 		"@fastify/static": "^9.0.0",
-		"fastify": "^5.8.2"
+		"fastify": "^5.8.4"
 	},
 	"devDependencies": {
 		"@types/ws": "^8.18.1"
