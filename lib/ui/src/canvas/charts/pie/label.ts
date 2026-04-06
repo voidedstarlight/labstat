@@ -53,7 +53,7 @@ function attachListeners(
 
 		const sectors = (() => {
 			try {
-				return JSON.parse(canvas.dataset.sectors ?? "") as StyledSector[];
+				return JSON.parse(canvas.dataset.sectors ?? "") as Array<StyledSector>;
 			} catch {
 				console.warn(
 					"[charts/pie] failed to parse JSON sectors data. Chart hover effects "

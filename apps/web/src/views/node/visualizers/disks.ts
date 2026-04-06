@@ -7,7 +7,7 @@ import type { diskLayout as diskData } from "systeminformation";
 type disk_info = Awaited<ReturnType<typeof diskData>>;
 
 interface TableData {
-	items: string[];
+	items: Array<string>;
 	tooltip?: string;
 }
 
@@ -17,9 +17,9 @@ function disks(data: disk_info) {
 
 	createCollectorTitle(container, "Disks");
 
-	const table_data: TableData[] = [{
+	const table_data: Array<TableData> = [ {
 		items: ["Mountpoint", "Size", "Type"]
-	}];
+	} ];
 
 	data.forEach(disk => {
 		const items = [

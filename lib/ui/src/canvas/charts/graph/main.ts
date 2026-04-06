@@ -9,7 +9,7 @@ interface Dataset {
 }
 
 interface GraphInitOptions extends CanvasOptions {
-	datasets: Dataset[];
+	datasets: Array<Dataset>;
 }
 
 function graph(options: GraphInitOptions) {
@@ -22,9 +22,9 @@ function graph(options: GraphInitOptions) {
 function addGraphData(canvas: HTMLCanvasElement, data: number, dataset = 0) {
 	// const ctx = canvas.getContext("2d");
 
-	const datasets: unknown[] | false = (() => {
+	const datasets: Array<unknown> | false = (() => {
 		try {
-			return JSON.parse(canvas.dataset.format ?? "") as unknown[];
+			return JSON.parse(canvas.dataset.format ?? "") as Array<unknown>;
 		} catch {
 			console.warn(
 				"[charts/accumulation] failed to parse JSON chart format data. Chart "

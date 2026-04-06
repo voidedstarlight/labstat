@@ -2,7 +2,7 @@ import createCollectorTitle from "@labstat/ui/title";
 import createList from "@labstat/ui/list";
 import type { NetworkInterfaceInfo } from "os";
 
-type net_info = Record<string, NetworkInterfaceInfo[]>;
+type net_info = Record<string, Array<NetworkInterfaceInfo>>;
 
 function net(data: net_info) {
 	const container = document.getElementById("collector-!net");
@@ -10,9 +10,9 @@ function net(data: net_info) {
 
 	createCollectorTitle(container, "Network Interfaces");
 
-	const table_data = [{
+	const table_data = [ {
 		items: ["Interface", "IP", "MAC"]
-	}];
+	} ];
 
 	Object.keys(data).forEach(intf => {
 		const addresses = data[intf];

@@ -5,7 +5,7 @@ function calculateTicks(
 	min: number,
 	max: number,
 	increment: number
-): number[] {
+): Array<number> {
 	const first = Math.ceil(min / increment) * increment;
 	if (first > max) return [];
 

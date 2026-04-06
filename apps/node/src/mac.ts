@@ -20,21 +20,29 @@ class MAC {
 	}
 
 	updateARP() {
-		return new Promise((resolve, reject) => {
+		return new Promise(resolve => {
 			exec("arp -an", (err: unknown, stdout: string, stderr: string) => {
 				if (err) {
-					console.warn("[ARP] " + err);
-					return reject([]);
+					console.warn("[ARP] command error");
+					console.warn(err);
+					resolve([]);
+					return;
 				}
 
 				if (stderr) {
 					console.warn("[ARP] " + stderr);
-					return reject([]);
+					resolve([]);
+					return;
 				}
 
-				const devices = [];
+				const devices: Array<Device> = [];
 
 				stdout.split("\n").forEach(line => {
+					devices.push({
+						intf: line,
+						ip: "a",
+						mac: "a"
+					});
 				});
 			});
 		});

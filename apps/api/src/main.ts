@@ -7,7 +7,7 @@ import { getNodes, initDataFile, writeNode, type NodeOptions } from "./nodes";
 import registerWebsocket from "./data";
 
 interface Collectors {
-	collectors: string[];
+	collectors: Array<string>;
 }
 
 const server = Fastify.fastify({

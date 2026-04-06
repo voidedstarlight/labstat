@@ -10,11 +10,11 @@ import showData from "./visualizer";
 import "./node.css";
 
 interface Collectors {
-	collectors: string[];
+	collectors: Array<string>;
 }
 
 let socket: WebSocket;
-const collectors: string[] = [];
+const collectors: Array<string> = [];
 
 /*
  * prefixes: ! indicates no automatic updates after init
@@ -44,7 +44,7 @@ function createContainer(id: string, parent: HTMLElement) {
 	container.id = "collector-" + id;
 }
 
-async function getCollectors(node: string): Promise<string[]> {
+async function getCollectors(node: string): Promise<Array<string>> {
 	const url = `/api/${node}/collectors`;
 	const request = await fetch(url);
 	const data = await request.json() as Collectors;
@@ -75,7 +75,7 @@ async function initializeSocket(node: string) {
 	});
 }
 
-function refreshData(ids?: string[]) {
+function refreshData(ids?: Array<string>) {
 	(ids ?? collectors).forEach(id => {
 		if (id.startsWith("*")) return;
 		socket.send(id);

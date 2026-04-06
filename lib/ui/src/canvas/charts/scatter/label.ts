@@ -17,7 +17,7 @@ function styleLabel(pos: Point, text: string) {
 function pointLabel(canvas: HTMLCanvasElement, pos: Point) {
 	const points = (() => {
 		try {
-			return JSON.parse(canvas.dataset.points ?? "") as PointData[];
+			return JSON.parse(canvas.dataset.points ?? "") as Array<PointData>;
 		} catch {
 			console.warn(
 				"[charts/scatter] failed to parse JSON points data. Chart hover"
@@ -54,7 +54,7 @@ function statLabel(canvas: HTMLCanvasElement, pos: Point) {
 
 	const { x } = relativeInContext(pos, canvas);
 
-	const stats = JSON.parse(data) as Stats[];
+	const stats = JSON.parse(data) as Array<Stats>;
 	stats.some(stat => {
 		const [start, end] = stat.range;
 		if (x * 2 >= start && x * 2 <= end) {

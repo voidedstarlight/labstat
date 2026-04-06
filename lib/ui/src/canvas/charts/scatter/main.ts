@@ -8,7 +8,7 @@ type value_formatter = (value: number, precision?: number) => string;
 
 interface ScatterUpdateOptions {
 	colors?: [string, string];
-	values: number[];
+	values: Array<number>;
 	value_formatter?: value_formatter;
 	y_increment: number;
 }
@@ -76,7 +76,7 @@ function scatterPlotUpdate(
 		ctx, 150, min, max, options.values, options.colors
 	);
 
-	const points: PointData[] = [];
+	const points: Array<PointData> = [];
 
 	columns.forEach((column, index) => {
 		const value = options.values.at(index);

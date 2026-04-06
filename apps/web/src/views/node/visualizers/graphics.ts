@@ -10,9 +10,9 @@ function graphics(data: graphics_info) {
 
 	createCollectorTitle(container, "Graphics");
 
-	const table_data = [{
+	const table_data = [ {
 		items: ["Vendor", "Model", "Bus", "VRAM"]
-	}];
+	} ];
 
 	const { controllers } = data;
 

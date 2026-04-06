@@ -18,7 +18,7 @@ function parseRgb(html_string: string): rgba_color {
 
 function parseHex(html_string: string): rgba_color {
 	const { length } = html_string;
-	const values: string[] = [];
+	const values: Array<string> = [];
 
 	if (3 < length && length < 6) {
 		values.push(html_string.at(1)?.repeat(2) ?? "00");

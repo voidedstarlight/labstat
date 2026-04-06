@@ -9,7 +9,7 @@ interface Stats {
 
 function drawStats(
 	ctx: CanvasRenderingContext2D,
-	values: number[],
+	values: Array<number>,
 	value_formatter?: value_formatter
 ) {
 	// [todo] fix types

@@ -1,4 +1,4 @@
-import { cmdExixts } from "@labstat/util/shell";
+import { cmdExists } from "@labstat/util/shell";
 import { exec } from "child_process";
 
 interface Device {
@@ -35,7 +35,7 @@ interface RawOutput {
 					value: string;
 				}>;
 				descr: Array<{
-					value: string
+					value: string;
 				}>;
 				ttl: Array<{
 					value: string;
@@ -58,42 +58,24 @@ class LLDP {
 		this.resolved = cmdExists("lldpd");
 
 		if (!this.resolved) {
-			console.warn("[LLDP] could not find lldpd executable for network mapping");
-			console.warn("[LLDP] install with package manager and setuid of lldpdctl executable");
+			console.warn(
+				"[LLDP] could not find lldpd executable for network mapping"
+			);
+
+			console.warn(
+				"[LLDP] install with package manager and setuid of lldpdctl executable"
+			);
 		}
-	}
-
-	async #parse() {
-		return new Promise((resolve, reject) => {
-			exec("lldpctl -f json0", (err: unknown, stdout: string, stderr: string) => {
-				if (err) {
-					console.warn("[LLDP] " + err);
-					return reject({});
-				}
-
-				if (stderr) {
-					console.warn("[LLDP] " + stderr);
-					return reject({});
-				}
-
-				try {
-					resolve(JSON.parse(stdout) as RawOutput);
-				} catch (_) {
-					console.warn("[LLDP] incorrect output");
-					reject({})
-				}
-			});
-		});
 	}
 
 	async update() {
 		const output = await this.#parse() as RawOutput;
 
-		if (output.lldp) {
+		if (output.lldp.length) {
 			this.#neighbors = {};
 
 			output.lldp[0].interface.forEach(data => {
-				const chassis = data.chassis[0];
+				const [chassis] = data.chassis;
 
 				this.#neighbors[data.name] = {
 					name: chassis.name[0].value,
@@ -107,6 +89,34 @@ class LLDP {
 
 	get() {
 		return this.#neighbors;
+	}
+
+	async #parse() {
+		return new Promise(resolve => {
+			exec("lldpctl -f json0", (
+				err: unknown, stdout: string, stderr: string
+			) => {
+				if (err) {
+					console.warn("[LLDP] command failed");
+					console.warn(err);
+					resolve({});
+					return;
+				}
+
+				if (stderr) {
+					console.warn("[LLDP] " + stderr);
+					resolve({});
+					return;
+				}
+
+				try {
+					resolve(JSON.parse(stdout) as RawOutput);
+				} catch {
+					console.warn("[LLDP] incorrect output");
+					resolve({});
+				}
+			});
+		});
 	}
 }
 

@@ -1,9 +1,9 @@
 interface RowOptions {
-	items: string[];
+	items: Array<string>;
 	tooltip?: string;
 }
 
-type list_options = RowOptions[];
+type list_options = Array<RowOptions>;
 
 function createList(container: HTMLElement, data: list_options) {
 	const table = document.createElement("table");

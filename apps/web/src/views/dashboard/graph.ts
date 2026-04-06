@@ -19,8 +19,8 @@ interface GraphEdge {
 class Graph {
 	#canvas: HTMLElement;
 
-	#nodes: Array<GraphNode> = [ ];
-	#edges: Array<GraphEdge> = [ ];
+	#nodes: Array<GraphNode> = [];
+	#edges: Array<GraphEdge> = [];
 
 	#click_x = 0;
 	#click_y = 0;
@@ -41,6 +41,39 @@ class Graph {
 		window.requestAnimationFrame(this.#redraw.bind(this));
 
 		this.#registerEvents();
+	}
+
+	data(data: Array<NodeData>, level: int = 0, parent?: GraphNode) {
+		let max_x = 0;
+
+		data.forEach(node => {
+			const node_pos = {
+				capabilities: node.capabilities,
+				description: node.description,
+				intf: node.intf,
+				ip: node.ip,
+				name: node.name,
+				x: max_x,
+				y: level
+			} as GraphNode;
+
+			this.#nodes.push(node_pos);
+
+			if (parent) {
+				const edge = {
+					start: [parent.x, parent.y],
+					end: [node_pos.x, node_pos.y]
+				} as GraphEdge;
+
+				this.#edges.push(edge);
+			}
+
+			const children_x = this.data(node.children, level + 1, node_pos);
+
+			max_x += Math.max(1, children_x);
+		});
+
+		return max_x;
 	}
 
 	#registerEvents() {
@@ -76,7 +109,10 @@ class Graph {
 		const width = this.#scale * 500;
 		const height = this.#scale * 180;
 
-		return [this.#x + x * (width + this.#s(50)) + 50, this.#y + y * (height + this.#s(150)) + 50];
+		return [
+			this.#x + x * (width + this.#s(50)) + 50,
+			this.#y + y * (height + this.#s(150)) + 50
+		];
 	}
 
 	#s(size: int) {
@@ -91,7 +127,7 @@ class Graph {
 		ctx.lineTo(x, this.#canvas.height);
 		ctx.stroke();
 
-		this.#gridX(ctx, x + m, m)
+		this.#gridX(ctx, x + m, m);
 	}
 
 	#gridY(ctx: CanvasRenderingContext2D, y: int, m: int) {
@@ -102,7 +138,7 @@ class Graph {
 		ctx.lineTo(this.#canvas.width, y);
 		ctx.stroke();
 
-		this.#gridY(ctx, y + m, m)
+		this.#gridY(ctx, y + m, m);
 	}
 
 	#redraw() {
@@ -126,7 +162,7 @@ class Graph {
 		const margin_y = this.#s(45);
 
 		this.#nodes.forEach(node => {
-			const [ x, y ] = this.#screenXY(node.x, node.y);
+			const [x, y] = this.#screenXY(node.x, node.y);
 
 			ctx.beginPath();
 			ctx.roundRect(x, y, width, height, this.#s(32));
@@ -141,14 +177,22 @@ class Graph {
 				ctx.beginPath();
 				ctx.fillStyle = "#fff2";
 
-				ctx.roundRect(details_x, y + height - margin_y - this.#s(30), capability_size, capability_size, this.#s(10));
+				ctx.roundRect(
+					details_x, y + height - margin_y - this.#s(30),
+					capability_size, capability_size, this.#s(10)
+				);
+
 				ctx.fill();
 
 				ctx.font = `400 ${this.#s(22)}px Poppins`;
 				ctx.textBaseline = "middle";
 				ctx.textAlign = "center";
 				ctx.fillStyle = "white";
-				ctx.fillText(capability, details_x + capability_size / 2, y + height - margin_y - this.#s(28) + capability_size / 2);
+
+				ctx.fillText(
+					capability, details_x + capability_size / 2,
+					y + height - margin_y - this.#s(28) + capability_size / 2
+				);
 
 				details_x += capability_size + this.#s(10);
 			});
@@ -168,7 +212,11 @@ class Graph {
 			const ip_length = ctx.measureText(node.ip).width;
 
 			ctx.fillStyle = "#BBB";
-			ctx.fillText(node.intf, details_x + ip_length + this.#s(20), y + height - margin_y);
+
+			ctx.fillText(
+				node.intf, details_x + ip_length + this.#s(20),
+				y + height - margin_y
+			);
 		});
 
 		this.#edges.forEach(edge => {
@@ -183,39 +231,6 @@ class Graph {
 		});
 
 		window.requestAnimationFrame(this.#redraw.bind(this));
-	}
-
-	data(data: Array<NodeData>, level: int = 0, parent?: GraphNode) {
-		let max_x = 0;
-
-		data.forEach(node => {
-			const node_pos = {
-				capabilities: node.capabilities,
-				description: node.description,
-				intf: node.intf,
-				ip: node.ip,
-				name: node.name,
-				x: max_x,
-				y: level
-			} as GraphNode;
-
-			this.#nodes.push(node_pos);
-
-			if (parent) {
-				const edge = {
-					start: [parent.x, parent.y],
-					end: [node_pos.x, node_pos.y]
-				} as GraphEdge;
-
-				this.#edges.push(edge);
-			}
-
-			const children_x = this.data(node.children, level + 1, node_pos);
-
-			max_x += Math.max(1, children_x);
-		});
-
-		return max_x;
 	}
 }
 

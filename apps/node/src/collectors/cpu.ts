@@ -75,7 +75,7 @@ class CPUFreq implements Collector {
 		});
 	}
 
-	getData(index = 0): number[] {
+	getData(index = 0): Array<number> {
 		if (index > this.#n_cpus - 1) return [];
 
 		let data = 0;

@@ -35,7 +35,7 @@ function generateAscii(text: string): Promise<string> {
 }
 
 function parseLinuxRelease(
-	lines: string[]
+	lines: Array<string>
 ): [string, string] {
 	const first = lines.at(0);
 

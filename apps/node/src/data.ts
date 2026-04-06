@@ -8,7 +8,7 @@ import {
 } from "./collectors/core";
 
 // eslint-disable-next-line @typescript-eslint/prefer-function-type
-const all_collectors: { new(): Collector }[] = [
+const all_collectors: Array<{ new(): Collector }> = [
 	CPUFreq, Disks, Graphics, Hostname, LoadAvg, Memory, Network, OS, Uptime
 ];
 
@@ -22,7 +22,7 @@ all_collectors.forEach(collector => {
 	}
 });
 
-function activeCollectors(): string[] {
+function activeCollectors(): Array<string> {
 	return Object.keys(active_collectors);
 }
 

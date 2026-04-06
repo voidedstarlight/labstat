@@ -1,5 +1,5 @@
 type deinit_func = () => void;
-const deinit: deinit_func[] = [];
+const deinit: Array<deinit_func> = [];
 
 function registerDeinit(func: deinit_func) {
 	deinit.push(func);

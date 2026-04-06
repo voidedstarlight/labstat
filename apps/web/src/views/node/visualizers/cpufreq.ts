@@ -7,7 +7,7 @@ function cpufreq(data: unknown) {
 	const canvas = document.getElementById("cpufreq-canvas") as HTMLCanvasElement;
 
 	scatterPlotUpdate(canvas, {
-		values: data as number[],
+		values: data as Array<number>,
 		value_formatter: readableHertz,
 		y_increment: 500000000,
 		colors: ["#c0eed2", "#d96862"]

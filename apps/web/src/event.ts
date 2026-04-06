@@ -3,7 +3,9 @@ const listeners: Record<string, Array<() => void>> = {
 };
 
 window.addEventListener("resize", () => {
-	listeners.resize.forEach(callback => callback());
+	listeners.resize.forEach(callback => {
+		callback();
+	});
 });
 
 function onResize(callback: () => void) {

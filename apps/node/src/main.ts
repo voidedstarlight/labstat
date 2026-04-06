@@ -1,11 +1,11 @@
 import Fastify from "fastify";
 import fastifyWebsocket from "@fastify/websocket";
 
-import { activeCollectors, getData } from "./data";
+import { getData } from "./data";
 import LLDP from "./lldp";
 
 const lldp = new LLDP();
-if (lldp.resolved) lldp.update();
+if (lldp.resolved) void lldp.update();
 
 const server = Fastify.fastify({
 	logger: {
@@ -30,7 +30,7 @@ server.register(ws_server => {
 });
 
 server.get("/api/lldp", async (_, reply) => {
-	if (!(await lldp.resolved)) return reply.send({ });
+	if (!lldp.resolved) return reply.send({ });
 
 	reply.send(lldp.get());
 });

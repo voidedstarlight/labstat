@@ -1,4 +1,4 @@
-function sum(values: number[]): number {
+function sum(values: Array<number>): number {
 	const first = values.at(0);
 	if (!first) return 0;
 
@@ -16,11 +16,13 @@ function percentInRange(value: number, min: number, max: number): number {
 	return clamped_value / range;
 }
 
-function mean(...values: number[]): number {
+function mean(...values: Array<number>): number {
 	return sum(values) / values.length;
 }
 
-function squaredDeviations(values: number[], mean_value: number): number[] {
+function squaredDeviations(
+	values: Array<number>, mean_value: number
+): Array<number> {
 	const first = values.at(0);
 	if (!first) return [];
 
@@ -30,7 +32,7 @@ function squaredDeviations(values: number[], mean_value: number): number[] {
 	];
 }
 
-function stddev(values: number[], mean_value?: number): number {
+function stddev(values: Array<number>, mean_value?: number): number {
 	const deviations = squaredDeviations(values, mean_value ?? mean(...values));
 	const variance = mean(...deviations);
 	return Math.sqrt(variance);

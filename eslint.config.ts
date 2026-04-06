@@ -27,16 +27,24 @@ export default tseslint.config(
 			"no-shadow": "off",
 			"no-use-before-define": "off",
 			"prefer-destructuring": "off",
+			"@stylistic/array-bracket-spacing": ["error", "never", {
+				arraysInArrays: true,
+				objectsInArrays: true
+			} ],
 			"@stylistic/arrow-parens": ["error", "as-needed"],
 			"@stylistic/function-call-spacing": "error",
 			"@stylistic/max-len": ["warn", {
 				code: 80,
 				tabWidth: 2
-			}],
+			} ],
 			"@stylistic/multiline-comment-style": "warn",
 			"@stylistic/no-extra-semi": "error",
 			"@stylistic/no-confusing-arrow": "error",
 			"@stylistic/nonblock-statement-body-position": "error",
+			"@stylistic/quote-props": ["error", "as-needed"],
+			"@typescript-eslint/array-type": ["error", {
+				default: "generic"
+			} ],
 			"@typescript-eslint/consistent-type-exports": "error",
 			"@typescript-eslint/consistent-type-imports": "error",
 			"@typescript-eslint/default-param-last": "error",
@@ -57,7 +65,7 @@ export default tseslint.config(
 			}, {
 				format: ["snake_case"],
 				selector: "typeAlias"
-			}],
+			} ],
 			"@typescript-eslint/no-confusing-void-expression": "error",
 			"@typescript-eslint/no-deprecated": "error",
 			"@typescript-eslint/no-dynamic-delete": "error",
@@ -66,6 +74,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-import-type-side-effects": "error",
 			"@typescript-eslint/no-invalid-void-type": "error",
 			"@typescript-eslint/no-meaningless-void-operator": "error",
+			"@typescript-eslint/no-misused-promises": "off",
 			"@typescript-eslint/no-misused-spread": "error",
 			"@typescript-eslint/no-mixed-enums": "error",
 			"@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
@@ -81,7 +90,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-unsafe-return": "off",
 			"@typescript-eslint/no-unused-expressions": ["error", {
 				allowShortCircuit: true
-			}],
+			} ],
 			"@typescript-eslint/no-use-before-define": "error",
 			"@typescript-eslint/no-useless-constructor": "error",
 			"@typescript-eslint/no-useless-empty-export": "error",
@@ -93,7 +102,7 @@ export default tseslint.config(
 			"@typescript-eslint/return-await": "error",
 			"@typescript-eslint/unified-signatures": "error",
 			"@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
-			"no-useless-constructor": "off",
+			"no-useless-constructor": "off"
 		}
 	},
 	{

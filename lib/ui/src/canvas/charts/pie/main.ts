@@ -55,7 +55,7 @@ function pieChartUpdate(canvas: HTMLCanvasElement, options: PieUpdateOptions) {
 	const midpoint = Math.floor(size / 2);
 
 	let current_angle = -Math.PI / 2;
-	const sectors: StyledSector[] = [];
+	const sectors: Array<StyledSector> = [];
 
 	sorted_keys.forEach(key => {
 		const value = values[key];

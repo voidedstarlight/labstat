@@ -2,7 +2,7 @@ import { pieChartUpdate } from "@labstat/ui/charts/pie";
 import { readableBytes } from "@labstat/util/units";
 
 const COLORS = {
-	"Free": "#5aba80",
+	Free: "#5aba80",
 	"Used - Active": "#333",
 	"Used - Buffers": "#303e36",
 	"Used - Cache": "#3d5145"
@@ -16,7 +16,7 @@ function memory(data: Record<string, number>) {
 		colors: COLORS,
 		total,
 		values: {
-			"Free": data.free,
+			Free: data.free,
 			"Used - Buffers": data.buffers,
 			"Used - Cache": data.cache,
 			"Used - Active": data.active

@@ -19,7 +19,9 @@ function metricShift(value: number): ShiftData {
 	};
 }
 
-function readable(value: number, units: string[], precision: number): string {
+function readable(
+	value: number, units: Array<string>, precision: number
+): string {
 	const { shift_amount, value: shifted_value } = metricShift(value);
 	const rounded = stripTrailingZeros(shifted_value.toFixed(precision));
 

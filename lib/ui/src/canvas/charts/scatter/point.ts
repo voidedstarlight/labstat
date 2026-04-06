@@ -30,9 +30,9 @@ function drawPoints(
 	x: number,
 	min: number,
 	max: number,
-	values: number[],
+	values: Array<number>,
 	colors?: [string, string]
-): number[] {
+): Array<number> {
 	const first_value = values.at(0);
 	if (!first_value) return [];
 

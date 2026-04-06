@@ -20,7 +20,7 @@ function mainView(content: HTMLElement) {
 					ip: "10.20.1.11",
 					name: "Test Child",
 					description: "Description",
-					children: [ ]
+					children: []
 				},
 				{
 					capabilities: "",
@@ -28,7 +28,7 @@ function mainView(content: HTMLElement) {
 					ip: "10.20.1.33",
 					name: "Test Child",
 					description: "Description",
-					children: [ ]
+					children: []
 				},
 				{
 					capabilities: "BW",
@@ -36,7 +36,7 @@ function mainView(content: HTMLElement) {
 					ip: "10.20.1.15",
 					name: "Test Child",
 					description: "Description",
-					children: [ ]
+					children: []
 				}
 			]
 		},
@@ -46,7 +46,7 @@ function mainView(content: HTMLElement) {
 			ip: "172.1.1.1",
 			name: "Separate",
 			description: "Description",
-			children: [ ]
+			children: []
 		}
 	] as Array<NodeData>; // test data
 
