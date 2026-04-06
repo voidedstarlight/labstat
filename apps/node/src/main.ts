@@ -5,9 +5,7 @@ import { activeCollectors, getData } from "./data";
 import LLDP from "./lldp";
 
 const lldp = new LLDP();
-lldp.resolved.then(active => {
-	if (active) lldp.update();
-});
+if (lldp.resolved) lldp.update();
 
 const server = Fastify.fastify({
 	logger: {

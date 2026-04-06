@@ -1,3 +1,4 @@
+import { cmdExixts } from "@labstat/util/shell";
 import { exec } from "child_process";
 
 interface Device {
@@ -48,22 +49,18 @@ interface RawOutput {
 		}>;
 	}>;
 }
+
 class LLDP {
-	resolved: Promise<boolean>;
+	resolved = false;
 	#neighbors: Record<string, Device> = { };
 
 	constructor() {
-		this.resolved = new Promise(resolve => {
-			exec("lldpd -v", (err: unknown, stdout: string) => {
-				if (err) {
-					console.warn("[LLDP] could not find lldpd executable for network mapping");
-					console.warn("[LLDP] install with package manager and setuid of lldpdctl executable")
-					return resolve(false);
-				}
+		this.resolved = cmdExists("lldpd");
 
-				resolve(true);
-			});
-		});
+		if (!this.resolved) {
+			console.warn("[LLDP] could not find lldpd executable for network mapping");
+			console.warn("[LLDP] install with package manager and setuid of lldpdctl executable");
+		}
 	}
 
 	async #parse() {
@@ -71,19 +68,19 @@ class LLDP {
 			exec("lldpctl -f json0", (err: unknown, stdout: string, stderr: string) => {
 				if (err) {
 					console.warn("[LLDP] " + err);
-					return reject({ });
+					return reject({});
 				}
 
 				if (stderr) {
 					console.warn("[LLDP] " + stderr);
-					return reject({ });
+					return reject({});
 				}
 
 				try {
 					resolve(JSON.parse(stdout) as RawOutput);
 				} catch (_) {
 					console.warn("[LLDP] incorrect output");
-					reject({ })
+					reject({})
 				}
 			});
 		});
